@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-abr-2017 18:30:52 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.Loan" table="LOANS">
+    	<composite-id name="loanId" class="co.edu.udea.iw.dto.LoanId">
+            <key-many-to-one name="username" class="co.edu.udea.iw.dto.User">
+        		<column name="USERNAME"></column>
+        	</key-many-to-one>
+        	<key-many-to-one name="device" class="co.edu.udea.iw.dto.Device">
+        		<column name="CODE"></column>
+        		<column name="COPY"></column>
+        	</key-many-to-one>
+            <key-property name="startDate" type="java.util.Date">
+            	<column name="STARTDATE" />
+        	</key-property>
+        </composite-id>
+        
+        <property name="endDate" type="java.util.Date">
+            <column name="ENDDATE" />
+        </property>
+        <property name="returnDate" type="java.util.Date">
+            <column name="RETURNDATE" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+    </class>
+</hibernate-mapping>

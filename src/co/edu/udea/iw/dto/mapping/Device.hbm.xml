@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-abr-2017 18:30:52 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.udea.iw.dto.Device" table="DEVICES">
+    	<composite-id name="deviceId" class="co.edu.udea.iw.dto.DeviceId">
+            <key-property name="code" type="java.lang.String">
+            	<column name="CODE" length="15"/>
+            </key-property>
+            <key-property name="copy" type="java.lang.String">
+            	<column name="COPY" length="5"/>
+        	</key-property>
+        </composite-id>
+                
+        <property name="name" type="java.lang.String">
+            <column name="NAME" not-null="true" length="50"/>
+        </property>
+        <property name="type" type="java.lang.String">
+            <column name="TYPE" not-null="true" length="15"/>
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" not-null="true" length="15"/>
+        </property>
+        <property name="details" type="java.lang.String">
+            <column name="DETAILS" length="250"/>
+        </property>
+    </class>
+</hibernate-mapping>
