@@ -5,6 +5,8 @@ package co.edu.udea.iw.dao.impl;
 
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Level;
@@ -17,7 +19,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.dao.LoanDAO;
+import co.edu.udea.iw.dto.Device;
+import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.dto.Loan;
+import co.edu.udea.iw.dto.LoanId;
+import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
@@ -49,6 +55,56 @@ public class LoanDAOImplTest {
 									"-5-"+ciudad.getReturnDate());
 			}
 			assertTrue(lista.size()>0);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testRegisterLoan() {
+		Loan loan = null;
+		LoanId loanId = null;
+		User user = null;
+		DeviceId deviceId = null;
+		Device device = null;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
+		calendar.add(Calendar.HOUR, 2);  // numero de horas a añadir, o restar en caso de horas<0
+		Date endDate = calendar.getTime();
+		try {
+			user = new User();
+			user.setUsername("raulio");
+			deviceId = new DeviceId("0001","1");
+			device = new Device();
+			device.setDeviceId(deviceId);
+			loanId = new LoanId(user,device,new Date());
+			loan = new Loan(loanId, endDate, null, "PRESTADO");
+			loanDAO.registerLoan(loan);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testRequestLoan() {
+		Loan loan = null;
+		LoanId loanId = null;
+		User user = null;
+		DeviceId deviceId = null;
+		Device device = null;
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
+		calendar.add(Calendar.HOUR, 2);  // numero de horas a añadir, o restar en caso de horas<0
+		Date endDate = calendar.getTime();
+		try {
+			user = new User();
+			user.setUsername("raulio");
+			deviceId = new DeviceId("0001","1");
+			device = new Device();
+			device.setDeviceId(deviceId);
+			loanId = new LoanId(user,device,new Date());
+			loan = new Loan(loanId, endDate, null, "RESERVADO");
+			loanDAO.registerLoan(loan);
 		} catch (MyException e) {
 			e.printStackTrace();
 		}

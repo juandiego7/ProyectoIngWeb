@@ -6,6 +6,36 @@ package co.edu.udea.iw.dto;
  */
 public class User {
 	private String username;
+	/**
+	 * 
+	 */
+	public User() {
+		
+	}
+	/**
+	 * @param username
+	 * @param typeId
+	 * @param numberId
+	 * @param name
+	 * @param lastName
+	 * @param email
+	 * @param password
+	 * @param role
+	 * @param manager
+	 */
+	public User(String username, String typeId, String numberId, String name, String lastName, String email,
+			String password, String role, User manager) {
+		super();
+		this.username = username;
+		this.typeId = typeId;
+		this.numberId = numberId;
+		this.name = name;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.manager = manager;
+	}
 	private String typeId;
 	private String numberId;
 	private String name;

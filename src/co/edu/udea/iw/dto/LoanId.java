@@ -11,7 +11,20 @@ public class LoanId implements Serializable {
 	private User username;
 	private Device device;
 	private Date startDate;
-	
+
+	public LoanId() {
+
+	}
+	/**
+	 * @param username
+	 * @param device
+	 * @param startDate
+	 */
+	public LoanId(User username, Device device, Date startDate) {
+		this.username = username;
+		this.device = device;
+		this.startDate = startDate;
+	}
 	public User getUsername() {
 		return username;
 	}

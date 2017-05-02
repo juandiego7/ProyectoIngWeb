@@ -10,6 +10,17 @@ public class DeviceId implements Serializable{
 	private String code;
 	private String copy;
 	
+	public DeviceId() {
+
+	}
+	/**
+	 * @param code
+	 * @param copy
+	 */
+	public DeviceId(String code, String copy) {
+		this.code = code;
+		this.copy = copy;
+	}
 	public String getCode() {
 		return code;
 	}

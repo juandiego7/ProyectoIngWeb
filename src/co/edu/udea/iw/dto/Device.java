@@ -13,6 +13,23 @@ public class Device {
 	private String status;
 	private String details;
 	
+	public Device() {
+
+	}
+	/**
+	 * @param deviceId
+	 * @param name
+	 * @param type
+	 * @param status
+	 * @param details
+	 */
+	public Device(DeviceId deviceId, String name, String type, String status, String details) {
+		this.deviceId = deviceId;
+		this.name = name;
+		this.type = type;
+		this.status = status;
+		this.details = details;
+	}
 	public DeviceId getDeviceId() {
 		return deviceId;
 	}

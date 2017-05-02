@@ -12,4 +12,6 @@ import co.edu.udea.iw.exception.MyException;
 public interface LoanDAO {
 	
 	public  List<Loan> getLoans() throws MyException;
+	
+	public void registerLoan(Loan loan) throws MyException;
 }

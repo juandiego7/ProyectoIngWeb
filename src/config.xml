@@ -37,4 +37,13 @@
 	<bean id="loanDAO" class="co.edu.udea.iw.dao.impl.LoanDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="userDAO" class="co.edu.udea.iw.dao.impl.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="deviceDAO" class="co.edu.udea.iw.dao.impl.DeviceDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userBL" class="co.edu.udea.iw.bl.impl.UserBLImpl">
+		<property name="userDAO" ref="userDAO"></property>
+	</bean>
 </beans>

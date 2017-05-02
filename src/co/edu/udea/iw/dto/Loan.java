@@ -13,6 +13,21 @@ public class Loan {
 	private Date returnDate;
 	private String status;
 
+	public Loan() {
+		
+	}
+	/**
+	 * @param loanId
+	 * @param endDate
+	 * @param returnDate
+	 * @param status
+	 */
+	public Loan(LoanId loanId, Date endDate, Date returnDate, String status) {
+		this.loanId = loanId;
+		this.endDate = endDate;
+		this.returnDate = returnDate;
+		this.status = status;
+	}
 	/**
 	 * @return the loanId
 	 */
