@@ -16,6 +16,7 @@ import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.dto.Loan;
 import co.edu.udea.iw.dto.LoanId;
+import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
@@ -109,6 +110,51 @@ public class LoanDAOImpl implements LoanDAO {
 			throw new MyException("Error consultando loan", e);
 		}
 		return loan;
+	}
+
+	@Override
+	public List<Loan> getLoans(User user, String status) throws MyException {
+		List<Loan> lista = new ArrayList<Loan>();
+		Session session = null;
+		try {				
+			session = sessionFactory.getCurrentSession();//session provista por spring
+			Criteria criteria = session.createCriteria(Loan.class);
+			criteria.add(Restrictions.eq("loanId.username", user));
+			criteria.add(Restrictions.eq("status", status));
+			lista = criteria.list();
+		} catch (HibernateException e) {
+			throw new MyException("Error consultando loans-user",e);
+		}
+		return lista;
+	}
+
+	@Override
+	public List<Loan> getLoans(String typeId, String numberId) throws MyException {
+		List<Loan> lista = new ArrayList<Loan>();
+		User user = null;
+		Session session = null;
+		try {				
+			session = sessionFactory.getCurrentSession();//session provista por spring
+			Criteria criteria = session.createCriteria(User.class);
+			criteria.add(Restrictions.eq("typeId", typeId));
+			criteria.add(Restrictions.eq("numberId", numberId));
+			user = (User)criteria.uniqueResult();
+			lista = getLoans(user, "RESERVADO");
+		} catch (HibernateException e) {
+			throw new MyException("Error consultando loans-numberId",e);
+		}
+		return lista;
+	}
+
+	@Override
+	public void deleteLoan(Loan loan) throws MyException {
+		Session session = null;
+		try {
+			session = sessionFactory.getCurrentSession();
+			session.delete(loan);
+		} catch (HibernateException e) {
+			throw new MyException("Error eliminando loan", e);
+		}	
 	}
 
 }

@@ -120,7 +120,7 @@ public class LoanDAOImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
+			calendar.set(Calendar.DATE, 11);
 			date = calendar.getTime();	
 			lista = loanDAO.getLoans(deviceId,date);
 			for(Loan loan: lista){
@@ -149,12 +149,12 @@ public class LoanDAOImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
-			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.DATE, 11);
+			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
 			date = calendar.getTime();
-			
+			System.out.println("fecha 23: "+date);
 			user = new User();
 			user.setUsername("juan.goez");
 			
@@ -164,7 +164,7 @@ public class LoanDAOImplTest {
 			loanId = new LoanId(user,device,date);
 			
 			loan = loanDAO.getLoan(loanId);
-			loan.setReturnDate(new Date());
+			loan.setStatus("PRESTADO");
 			loanDAO.updateLoan(loan);
 			
 		} catch (MyException e) {
@@ -185,8 +185,8 @@ public class LoanDAOImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
-			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.DATE, 11);
+			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
 			date = calendar.getTime();
@@ -204,6 +204,94 @@ public class LoanDAOImplTest {
 			loan.setReturnDate(new Date());
 			loanDAO.updateLoan(loan);
 			
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testGetLoansUser() {
+		List<Loan> lista = null;//Lista donde se almacenan las ciudades
+		User user = null;
+		try {
+			user = new User();
+			user.setUsername("raulio");
+			lista = loanDAO.getLoans(user,"PRESTADO");
+			for(Loan loan: lista){
+				System.out.println("statusUser: "+loan.getStatus() +
+									"-1-"+loan.getEndDate()+
+									"-3-"+loan.getLoanId().getUsername().getName()+
+									"-5-"+loan.getReturnDate());
+			}
+			assertTrue(lista.size()>0);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+	@Test
+	public void testGetLoansUserHistory() {
+		List<Loan> lista = null;//Lista donde se almacenan las ciudades
+		User user = null;
+		try {
+			user = new User();
+			user.setUsername("raulio");
+			lista = loanDAO.getLoans(user,"ENTREGADO");
+			for(Loan loan: lista){
+				System.out.println("statusUserHistory: "+loan.getStatus() +
+									"-1-"+loan.getEndDate()+
+									"-3-"+loan.getLoanId().getUsername().getName()+
+									"-5-"+loan.getReturnDate());
+			}
+			assertTrue(lista.size()>0);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testGetLoansNumberId() {
+		List<Loan> lista = null;//Lista donde se almacenan las ciudades
+
+		try {
+			lista = loanDAO.getLoans("CC","12345");
+			for(Loan loan: lista){
+				System.out.println("statusNumber: "+loan.getStatus() +
+									"-1-"+loan.getEndDate()+
+									"-3-"+loan.getLoanId().getUsername().getName()+
+									"-5-"+loan.getReturnDate());
+			}
+			assertTrue(lista.size()>0);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testDeleteLoan() {
+		Loan loan = null;
+		LoanId loanId = null;
+		User user = null;
+		DeviceId deviceId = null;
+		Device device = null;
+		Calendar calendar = null;
+		Date date = null;
+		try {
+			date = new Date();
+			calendar = Calendar.getInstance();
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
+			calendar.set(Calendar.DATE, 11);
+			calendar.set(Calendar.HOUR,22);
+			calendar.set(Calendar.MINUTE,0);
+			calendar.set(Calendar.SECOND,0);
+			user = new User();
+			user.setUsername("juan.goez");
+			deviceId = new DeviceId("0001","1");
+			device = new Device();
+			device.setDeviceId(deviceId);
+			loanId = new LoanId(user,device,date);
+			loan = new Loan();
+			loan.setLoanId(loanId);
+			loanDAO.deleteLoan(loan);
 		} catch (MyException e) {
 			e.printStackTrace();
 		}

@@ -6,6 +6,7 @@ import java.util.List;
 import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.dto.Loan;
 import co.edu.udea.iw.dto.LoanId;
+import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
@@ -23,4 +24,10 @@ public interface LoanDAO {
 	public Loan getLoan(LoanId loanId) throws MyException; 
 	
 	public void updateLoan(Loan loan) throws MyException;
+	
+	public List<Loan> getLoans(User user, String status) throws MyException;
+	
+	public List<Loan> getLoans(String typeId, String numberId) throws MyException;
+	
+	public void deleteLoan(Loan loan) throws MyException;
 }

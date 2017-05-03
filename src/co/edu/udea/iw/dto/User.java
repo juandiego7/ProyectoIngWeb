@@ -5,10 +5,17 @@ package co.edu.udea.iw.dto;
  *
  */
 public class User {
+		
 	private String username;
-	/**
-	 * 
-	 */
+	private String typeId;
+	private String numberId;
+	private String name;
+	private String lastName;
+	private String email;
+	private String password;
+	private String role;
+	private User manager;
+	
 	public User() {
 		
 	}
@@ -36,15 +43,6 @@ public class User {
 		this.role = role;
 		this.manager = manager;
 	}
-	private String typeId;
-	private String numberId;
-	private String name;
-	private String lastName;
-	private String email;
-	private String password;
-	private String role;
-	private User manager;
-	
 	public String getUsername() {
 		return username;
 	}
