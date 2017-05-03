@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import co.edu.udea.iw.dao.UserDAO;
-import co.edu.udea.iw.dto.Loan;
 import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 

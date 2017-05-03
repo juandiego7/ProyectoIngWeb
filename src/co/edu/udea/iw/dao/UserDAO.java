@@ -10,6 +10,7 @@ import co.edu.udea.iw.exception.MyException;
  *
  */
 public interface UserDAO {
+	
 	public List<User> getUsers() throws MyException;
 	
 	public void registerUser(User user) throws MyException;
