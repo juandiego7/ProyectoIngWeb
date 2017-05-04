@@ -51,5 +51,7 @@
 	</bean>
 	<bean id="loanBL" class="co.edu.udea.iw.bl.impl.LoanBLImpl">
 		<property name="loanDAO" ref="loanDAO"></property>
+		<property name="userDAO" ref="userDAO"></property>
+		<property name="deviceDAO" ref="deviceDAO"></property>
 	</bean>
 </beans>

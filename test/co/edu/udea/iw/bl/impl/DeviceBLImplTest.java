@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +32,14 @@ public class DeviceBLImplTest {
 	@Autowired
 	DeviceBL deviceBL;
 	
+	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	/**
 	 * Test method for {@link co.edu.udea.iw.bl.impl.DeviceBLImpl#getDevices()}.
 	 */
 	@Test
 	public void testGetDevices() {
 		List<Device> lista = null;//Lista donde se almacenan las ciudades
-		
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		try {
 			lista = deviceBL.getDevices();
 			for(Device device: lista){

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,8 @@ public class UserBLImplTest {
 
 	@Autowired
 	UserBL userBL;
+	
+	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	
 	@Test
 	public void testGetUsers() {

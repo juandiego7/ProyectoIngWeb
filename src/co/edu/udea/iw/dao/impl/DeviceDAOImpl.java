@@ -17,20 +17,19 @@ import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
+ * Implementacion de los metodos de los dispositivos
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  *
  */
 public class DeviceDAOImpl implements DeviceDAO{
-	SessionFactory sessionFactory;
+	SessionFactory sessionFactory;//Variable para acceder a la session actual
 	
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
+	/**
+	 * Implementacion del metodo para obtener todo los dipositivos
+	 * @return List<Device>
+	 * @throws MyException
+	 */
 	@Override
 	public List<Device> getDevices() throws MyException {
 		List<Device> lista = new ArrayList<Device>();
@@ -45,6 +44,10 @@ public class DeviceDAOImpl implements DeviceDAO{
 		return lista;
 	}
 
+	/**
+	 * Implementacion del metodo para actualizar un dispositivo
+	 * @throws MyException
+	 */
 	@Override
 	public void updateDevice(Device device) throws MyException {
 		Session session = null;
@@ -56,6 +59,12 @@ public class DeviceDAOImpl implements DeviceDAO{
 		}
 	}
 
+	/**
+	 * Implementacion del metodo para obtener un dispositivo
+	 * por medio de su clave primaria
+	 * @return Device
+	 * @throws MyException	
+	 */
 	@Override
 	public Device getDevice(DeviceId deviceId) throws MyException {
 		Device device = null;
@@ -103,4 +112,12 @@ public class DeviceDAOImpl implements DeviceDAO{
 		return lista;
 	}
 
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 }

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class LoanBLImplTest {
 	@Autowired
 	LoanBL loanBL;
 	
+	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	
 	/**
 	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#getLoans()}.
@@ -87,8 +89,8 @@ public class LoanBLImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
-			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.DATE, 11);
+			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
 			date = calendar.getTime();
@@ -118,8 +120,8 @@ public class LoanBLImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
-			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.DATE, 11);
+			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
 			date = calendar.getTime();
@@ -151,8 +153,8 @@ public class LoanBLImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
-			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.DATE, 11);
+			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
 			date = calendar.getTime();			

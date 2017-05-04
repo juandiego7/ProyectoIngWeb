@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,6 +38,8 @@ public class LoanDAOImplTest {
 
 	@Autowired//Inyectar datos desde la base de datos
 	LoanDAO loanDAO;
+	
+	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	/**
 	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans()}.
 	 */

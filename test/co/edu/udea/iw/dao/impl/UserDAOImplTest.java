@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class UserDAOImplTest {
 
 	@Autowired//Inyectar datos desde la base de datos
 	UserDAO userDAO;
+	
+	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	/**
 	 * Test method for {@link co.edu.udea.iw.dao.impl.UserDAOImpl#getUsers()}.
 	 */

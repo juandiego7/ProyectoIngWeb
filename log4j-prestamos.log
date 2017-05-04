@@ -1,0 +1,48 @@
+2017-05-04 12:07:53 ERROR MyException - El usuario no esta registrado
+2017-05-04 12:07:53 ERROR MyException - El prestamo no se encuentra registrado
+2017-05-04 12:08:36 ERROR MyException - El usuario no esta registrado
+2017-05-04 12:08:36 ERROR MyException - El prestamo no se encuentra registrado
+2017-05-04 12:09:07 ERROR MyException - Error actualizando loan
+org.hibernate.NonUniqueObjectException: a different object with the same identifier value was already associated with the session: [co.edu.udea.iw.dto.Loan#co.edu.udea.iw.dto.LoanId@495fac5f]
+	at org.hibernate.engine.StatefulPersistenceContext.checkUniqueness(StatefulPersistenceContext.java:638)
+	at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.performUpdate(DefaultSaveOrUpdateEventListener.java:305)
+	at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.entityIsDetached(DefaultSaveOrUpdateEventListener.java:246)
+	at org.hibernate.event.def.DefaultUpdateEventListener.performSaveOrUpdate(DefaultUpdateEventListener.java:57)
+	at org.hibernate.event.def.DefaultSaveOrUpdateEventListener.onSaveOrUpdate(DefaultSaveOrUpdateEventListener.java:93)
+	at org.hibernate.impl.SessionImpl.fireUpdate(SessionImpl.java:742)
+	at org.hibernate.impl.SessionImpl.update(SessionImpl.java:730)
+	at org.hibernate.impl.SessionImpl.update(SessionImpl.java:722)
+	at co.edu.udea.iw.dao.impl.LoanDAOImpl.updateLoan(LoanDAOImpl.java:96)
+	at co.edu.udea.iw.bl.impl.LoanBLImpl.updateLoan(LoanBLImpl.java:148)
+	at co.edu.udea.iw.bl.impl.LoanBLImplTest.testUpdateLoan(LoanBLImplTest.java:162)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:73)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:82)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:73)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:224)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+2017-05-04 12:09:07 ERROR MyException - El usuario no esta registrado
+2017-05-04 12:09:07 ERROR MyException - El prestamo no se encuentra registrado
