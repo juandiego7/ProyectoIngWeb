@@ -5,17 +5,51 @@ import java.util.List;
 import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.exception.MyException;
+/**
+ * 
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * Interfaz para declarar todo los metodos asociados a los dispositivos
+ */
 
 public interface DeviceDAO {
 	
+	/**
+	 * Metodo para retonar todos los dipositivos
+	 * @return List<Device> 
+	 * @throws MyException
+	 */
 	public List<Device> getDevices() throws MyException;
 	
+	/**
+	 * Metodo para actualizar los datos de un dispositivo
+	 * @param device
+	 * @throws MyException
+	 */
 	public void updateDevice(Device device) throws MyException;
 	
+	/**
+	 * Metodo para obtener el dispositivo asociado a una clave primaria
+	 * @param deviceId
+	 * @return Device
+	 * @throws MyException
+	 */
 	public Device getDevice(DeviceId deviceId) throws MyException;
 	
+	/**
+	 * Metodo para registrar un dispositivo
+	 * @param device
+	 * @throws MyException
+	 */
 	public void registerDevice(Device device) throws MyException;
 	
+	/**
+	 * Metodo para buscar dispositivos por medio de su codigo, nombre o tipo
+	 * @param code
+	 * @param name
+	 * @param type
+	 * @return List<Device>
+	 * @throws MyException
+	 */
 	public List<Device> searchDevice(String code, String name, String type) throws MyException;
 	
 }

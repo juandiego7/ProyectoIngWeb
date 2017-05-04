@@ -1,7 +1,7 @@
 /**
  * 
  */
-package co.edu.udea.iw.dao.impl;
+package co.edu.udea.iw.bl.impl;
 
 import static org.junit.Assert.*;
 
@@ -9,8 +9,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.udea.iw.dao.LoanDAO;
+import co.edu.udea.iw.bl.LoanBL;
 import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.dto.Loan;
@@ -33,19 +31,21 @@ import co.edu.udea.iw.exception.MyException;
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
 @ContextConfiguration(locations="classpath:config.xml")
-public class LoanDAOImplTest {
+public class LoanBLImplTest {
 
-	@Autowired//Inyectar datos desde la base de datos
-	LoanDAO loanDAO;
+	@Autowired
+	LoanBL loanBL;
+	
+	
 	/**
-	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans()}.
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#getLoans()}.
 	 */
 	@Test
 	public void testGetLoans() {
-		List<Loan> lista = null;//Lista donde se almacenan las ciudades
+		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		
 		try {
-			lista = loanDAO.getLoans();
+			lista = loanBL.getLoans();
 			for(Loan loan: lista){
 				System.out.println("status: "+loan.getStatus() +
 									"-1-"+loan.getEndDate()+
@@ -57,72 +57,42 @@ public class LoanDAOImplTest {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#registerLoan(java.lang.String, java.util.Date, java.util.Date, java.util.Date, java.lang.String, java.lang.String, java.lang.String)}.
+	 */
 	@Test
 	public void testRegisterLoan() {
-		Loan loan = null;
-		LoanId loanId = null;
-		User user = null;
-		DeviceId deviceId = null;
-		Device device = null;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
 		calendar.add(Calendar.HOUR, 2);  // numero de horas a añadir, o restar en caso de horas<0
 		Date endDate = calendar.getTime();
 		try {
-			user = new User();
-			user.setUsername("raulio");
-			deviceId = new DeviceId("0001","1");
-			device = new Device();
-			device.setDeviceId(deviceId);
-			loanId = new LoanId(user,device,new Date());
-			loan = new Loan(loanId, endDate, null, "PRESTADO");
-			loanDAO.registerLoan(loan);
+			loanBL.registerLoan("raulio2",new Date(),endDate,null,"RESERVADO","0004","1");
 		} catch (MyException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#getLoans(java.lang.String, java.lang.String, java.util.Date)}.
+	 */
 	@Test
-	public void testRequestLoan() {
-		Loan loan = null;
-		LoanId loanId = null;
-		User user = null;
-		DeviceId deviceId = null;
-		Device device = null;
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
-		calendar.add(Calendar.HOUR, 2);  // numero de horas a añadir, o restar en caso de horas<0
-		Date endDate = calendar.getTime();
-		try {
-			user = new User();
-			user.setUsername("raulio");
-			deviceId = new DeviceId("0001","1");
-			device = new Device();
-			device.setDeviceId(deviceId);
-			loanId = new LoanId(user,device,new Date());
-			loan = new Loan(loanId, endDate, null, "RESERVADO");
-			loanDAO.registerLoan(loan);
-		} catch (MyException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void testGetLoansDevice() {
-		List<Loan> lista = null;//Lista donde se almacenan las ciudades
-		DeviceId deviceId = null;
+	public void testGetLoansDeviceId() {
+		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		Calendar calendar = null;
 		Date date = null;
 		try {
-			deviceId = new DeviceId("0001", "1");
 			date = new Date();
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 12);
-			date = calendar.getTime();	
-			lista = loanDAO.getLoans(deviceId,date);
+			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.MINUTE,0);
+			calendar.set(Calendar.SECOND,0);
+			date = calendar.getTime();
+			lista = loanBL.getLoans("0001", "1",date);
 			for(Loan loan: lista){
 				System.out.println("status222: "+loan.getStatus() +
 									"-1-"+loan.getEndDate()+
@@ -134,7 +104,39 @@ public class LoanDAOImplTest {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#getLoan(java.lang.String, java.lang.String, java.lang.String, java.util.Date)}.
+	 */
+	@Test
+	public void testGetLoan() {
+		Loan loan = null;//Lista donde se almacenan las ciudades
+		Calendar calendar = null;
+		Date date = null;
+		try {
+			date = new Date();
+			calendar = Calendar.getInstance();
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
+			calendar.set(Calendar.DATE, 12);
+			calendar.set(Calendar.HOUR,10);
+			calendar.set(Calendar.MINUTE,0);
+			calendar.set(Calendar.SECOND,0);
+			date = calendar.getTime();
+			loan = loanBL.getLoan("juan.goez", "0001", "1", date);
+			System.out.println("statusLoan: "+loan.getStatus() +
+									"-1-"+loan.getEndDate()+
+									"-3-"+loan.getLoanId().getUsername().getName()+
+									"-5-"+loan.getReturnDate());
+			assertTrue(loan != null);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#updateLoan(java.lang.String, java.util.Date, java.util.Date, java.util.Date, java.lang.String, java.lang.String, java.lang.String)}.
+	 */
 	@Test
 	public void testUpdateLoan() {
 		Loan loan = null;
@@ -149,72 +151,32 @@ public class LoanDAOImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 11);
-			calendar.set(Calendar.HOUR,22);
+			calendar.set(Calendar.DATE, 12);
+			calendar.set(Calendar.HOUR,10);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
-			date = calendar.getTime();
-			user = new User();
-			user.setUsername("juan.goez");
-			
-			deviceId = new DeviceId("0001","1");
-			device = new Device();
-			device.setDeviceId(deviceId);
-			loanId = new LoanId(user,device,date);
-			
-			loan = loanDAO.getLoan(loanId);
-			loan.setStatus("PRESTADO");
-			loanDAO.updateLoan(loan);
+			date = calendar.getTime();			
+			loan = loanBL.getLoan("juan.goez", "0001", "1", date);
+			loanBL.updateLoan("juan.goez",
+							  loan.getLoanId().getStartDate(),
+							  loan.getEndDate(),
+							  new Date(),
+							  "ENTREGADO",
+							  "0001","1");
 			
 		} catch (MyException e) {
 			e.printStackTrace();
 		}
 	}
-	@Test
-	public void testUpdateLoanStatus() {
-		Loan loan = null;
-		LoanId loanId = null;
-		User user = null;
-		DeviceId deviceId = null;
-		Device device = null;
-		Calendar calendar = null;
-		Date date = null;
-		try {
-			date = new Date();
-			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 11);
-			calendar.set(Calendar.HOUR,22);
-			calendar.set(Calendar.MINUTE,0);
-			calendar.set(Calendar.SECOND,0);
-			date = calendar.getTime();
-			
-			user = new User();
-			user.setUsername("juan.goez");
-			
-			deviceId = new DeviceId("0001","1");
-			device = new Device();
-			device.setDeviceId(deviceId);
-			loanId = new LoanId(user,device,date);
-			
-			loan = loanDAO.getLoan(loanId);
-			loan.setStatus("ENTREGADO");
-			loan.setReturnDate(new Date());
-			loanDAO.updateLoan(loan);
-			
-		} catch (MyException e) {
-			e.printStackTrace();
-		}
-	}
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#getLoansUser(java.lang.String, java.lang.String)}.
+	 */
 	@Test
 	public void testGetLoansUser() {
-		List<Loan> lista = null;//Lista donde se almacenan las ciudades
-		User user = null;
+		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		try {
-			user = new User();
-			user.setUsername("raulio");
-			lista = loanDAO.getLoans(user,"PRESTADO");
+			lista = loanBL.getLoansUser("juan.goez", "RESERVADO");
 			for(Loan loan: lista){
 				System.out.println("statusUser: "+loan.getStatus() +
 									"-1-"+loan.getEndDate()+
@@ -226,34 +188,17 @@ public class LoanDAOImplTest {
 			e.printStackTrace();
 		}
 	}
-	@Test
-	public void testGetLoansUserHistory() {
-		List<Loan> lista = null;//Lista donde se almacenan las ciudades
-		User user = null;
-		try {
-			user = new User();
-			user.setUsername("raulio");
-			lista = loanDAO.getLoans(user,"ENTREGADO");
-			for(Loan loan: lista){
-				System.out.println("statusUserHistory: "+loan.getStatus() +
-									"-1-"+loan.getEndDate()+
-									"-3-"+loan.getLoanId().getUsername().getName()+
-									"-5-"+loan.getReturnDate());
-			}
-			assertTrue(lista.size()>0);
-		} catch (MyException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	public void testGetLoansNumberId() {
-		List<Loan> lista = null;//Lista donde se almacenan las ciudades
 
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#getLoansDevice(java.lang.String, java.lang.String)}.
+	 */
+	@Test
+	public void testGetLoansDevice() {
+		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		try {
-			lista = loanDAO.getLoans("CC","12345");
+			lista = loanBL.getLoansDevice("CC", "12345");
 			for(Loan loan: lista){
-				System.out.println("statusNumber: "+loan.getStatus() +
+				System.out.println("statusUser: "+loan.getStatus() +
 									"-1-"+loan.getEndDate()+
 									"-3-"+loan.getLoanId().getUsername().getName()+
 									"-5-"+loan.getReturnDate());
@@ -263,14 +208,12 @@ public class LoanDAOImplTest {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.LoanBLImpl#deleteLoan(java.lang.String, java.lang.String, java.lang.String, java.util.Date)}.
+	 */
 	@Test
 	public void testDeleteLoan() {
-		Loan loan = null;
-		LoanId loanId = null;
-		User user = null;
-		DeviceId deviceId = null;
-		Device device = null;
 		Calendar calendar = null;
 		Date date = null;
 		try {
@@ -278,21 +221,16 @@ public class LoanDAOImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 11);
-			calendar.set(Calendar.HOUR,22);
+			calendar.set(Calendar.DATE, 12);
+			calendar.set(Calendar.HOUR,10);
 			calendar.set(Calendar.MINUTE,0);
 			calendar.set(Calendar.SECOND,0);
-			user = new User();
-			user.setUsername("juan.goez");
-			deviceId = new DeviceId("0001","1");
-			device = new Device();
-			device.setDeviceId(deviceId);
-			loanId = new LoanId(user,device,date);
-			loan = new Loan();
-			loan.setLoanId(loanId);
-			loanDAO.deleteLoan(loan);
+			date = calendar.getTime();
+			System.out.println(date);
+			loanBL.deleteLoan("juan.goez", "0001", "1", date);
 		} catch (MyException e) {
 			e.printStackTrace();
 		}
 	}
+
 }

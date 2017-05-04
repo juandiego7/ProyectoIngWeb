@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.bl.DeviceBL;
 import co.edu.udea.iw.dto.Device;
-import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.exception.MyException;
 
 /**
@@ -91,7 +90,7 @@ public class DeviceBLImplTest {
 	@Test
 	public void testRegisterDevice() {
 		try {
-			deviceBL.registerDevice("0005","1", "Mouse", "I/O","DISPONIBLE","Inalambrico");;
+			deviceBL.registerDevice("0005","1", "Mouse", "I/O","DISPONIBLE","Inalambrico");
 		} catch (MyException e) {
 			e.printStackTrace();
 		}
