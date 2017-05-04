@@ -42,11 +42,8 @@ public class DeviceBLImpl implements DeviceBL {
 		}
 		if (status == null || "".equals(status)) {
 			throw new MyException("El estado no puede ser vacio");
-		}
-		//DeviceId deviceId = new DeviceId(code,copy);
-		
+		}		
 		Device device = getDevice(code, copy);
-		//new Device(deviceId, name, type, status, details);
 		if (device == null) {
 			throw new MyException("El dispositivo no se encuentra registrado");
 		}
