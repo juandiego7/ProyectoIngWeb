@@ -1,5 +1,11 @@
 package co.edu.udea.iw.bl.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.bl.UserBL;
@@ -15,15 +21,12 @@ import co.edu.udea.iw.exception.MyException;
 public class UserBLImpl implements UserBL {
 
 	private UserDAO userDAO;
+
+	@Override
+	public List<User> getUsers() throws MyException {
+		return userDAO.getUsers();
+	}
 	
-	public UserDAO getUserDAO() {
-		return userDAO;
-	}
-
-	public void setUserDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
-
 	@Override
 	public void registerUser(String username,
 							 String typeId,
@@ -56,6 +59,20 @@ public class UserBLImpl implements UserBL {
 		userDAO.registerUser(user);
 	}
 
-	
+	@Override
+	public User getUser(String username) throws MyException {
+		if (username == null || "".equals(username)) {
+			throw new MyException("El nombre de usario no puede estar vacio");
+		}
+		return userDAO.getUser(username);
+	}
+
+	public UserDAO getUserDAO() {
+		return userDAO;
+	}
+
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}	
 
 }

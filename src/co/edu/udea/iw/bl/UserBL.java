@@ -3,6 +3,8 @@
  */
 package co.edu.udea.iw.bl;
 
+import java.util.List;
+
 import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
@@ -11,6 +13,9 @@ import co.edu.udea.iw.exception.MyException;
  *
  */
 public interface UserBL {
+	
+	public List<User> getUsers() throws MyException;
+	
 	public void registerUser(String username,
 							 String typeId,
 							 String numberId,
@@ -20,4 +25,7 @@ public interface UserBL {
 							 String password,
 							 String role,
 							 User manager) throws MyException; 
+	
+	
+	public User getUser(String username) throws MyException;
 }
