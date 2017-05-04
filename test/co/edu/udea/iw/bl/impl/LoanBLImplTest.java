@@ -9,7 +9,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testGetLoans() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		
 		try {
@@ -56,7 +59,7 @@ public class LoanBLImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -65,6 +68,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testRegisterLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
 		calendar.add(Calendar.HOUR, 2);  // numero de horas a añadir, o restar en caso de horas<0
@@ -72,7 +76,7 @@ public class LoanBLImplTest {
 		try {
 			loanBL.registerLoan("raulio2",new Date(),endDate,null,"RESERVADO","0004","1");
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -81,6 +85,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testGetLoansDeviceId() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		Calendar calendar = null;
 		Date date = null;
@@ -103,7 +108,7 @@ public class LoanBLImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -112,6 +117,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testGetLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;//Lista donde se almacenan las ciudades
 		Calendar calendar = null;
 		Date date = null;
@@ -132,7 +138,7 @@ public class LoanBLImplTest {
 									"-5-"+loan.getReturnDate());
 			assertTrue(loan != null);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -141,6 +147,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testUpdateLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
 		LoanId loanId = null;
 		User user = null;
@@ -167,7 +174,7 @@ public class LoanBLImplTest {
 							  "0001","1");
 			
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -176,6 +183,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testGetLoansUser() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		try {
 			lista = loanBL.getLoansUser("juan.goez", "RESERVADO");
@@ -187,7 +195,7 @@ public class LoanBLImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -196,6 +204,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testGetLoansDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan los prestamos
 		try {
 			lista = loanBL.getLoansDevice("CC", "12345");
@@ -207,7 +216,7 @@ public class LoanBLImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -216,6 +225,7 @@ public class LoanBLImplTest {
 	 */
 	@Test
 	public void testDeleteLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Calendar calendar = null;
 		Date date = null;
 		try {
@@ -231,7 +241,7 @@ public class LoanBLImplTest {
 			System.out.println(date);
 			loanBL.deleteLoan("juan.goez", "0001", "1", date);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 

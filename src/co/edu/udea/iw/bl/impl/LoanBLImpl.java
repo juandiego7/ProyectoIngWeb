@@ -17,8 +17,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Implementacion de la logica de negocio para los prestamos
+ * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @Transactional
 public class LoanBLImpl implements LoanBL {

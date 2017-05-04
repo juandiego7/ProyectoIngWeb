@@ -14,8 +14,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Implementacion de la logica de negocio para los usuarios
+ * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @Transactional
 public class UserBLImpl implements UserBL {
@@ -66,7 +68,17 @@ public class UserBLImpl implements UserBL {
 		}
 		return userDAO.getUser(username);
 	}
-
+	@Override
+	public String login(String username, String password) throws MyException {
+		User user = getUser(username);
+		if (user != null) {
+			if(user.getPassword().equals(password)){
+				return "Usuario validado";
+			}
+		}
+		throw new MyException("Usuario o contraseña incorrecto");
+	}	
+	
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}

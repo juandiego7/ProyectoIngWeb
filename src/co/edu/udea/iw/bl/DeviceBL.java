@@ -6,7 +6,11 @@ import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
+ * Interfaz para definir los metodo de la logica
+ * de negocio para los dispositivos
+ * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  *
  */
 public interface DeviceBL {

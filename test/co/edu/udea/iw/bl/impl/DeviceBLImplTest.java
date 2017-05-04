@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
@@ -38,6 +39,7 @@ public class DeviceBLImplTest {
 	 */
 	@Test
 	public void testGetDevices() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Device> lista = null;//Lista donde se almacenan las ciudades
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		try {
@@ -49,7 +51,7 @@ public class DeviceBLImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -58,6 +60,7 @@ public class DeviceBLImplTest {
 	 */
 	@Test
 	public void testUpdateDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Device device = null;
 		String code = null;
 		String copy = null;
@@ -67,7 +70,7 @@ public class DeviceBLImplTest {
 			copy = device.getDeviceId().getCopy();
 			deviceBL.updateDevice(code, copy, device.getName(), device.getType(), "portatil", "procesador corei 5 intel");
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -76,6 +79,7 @@ public class DeviceBLImplTest {
 	 */
 	@Test
 	public void testGetDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Device device = null;
 		try {
 			device = deviceBL.getDevice("0002", "1");
@@ -83,7 +87,7 @@ public class DeviceBLImplTest {
 			assertTrue(device != null);
 
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -92,10 +96,11 @@ public class DeviceBLImplTest {
 	 */
 	@Test
 	public void testRegisterDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		try {
 			deviceBL.registerDevice("0005","1", "Mouse", "I/O","DISPONIBLE","Inalambrico");
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 
@@ -104,6 +109,7 @@ public class DeviceBLImplTest {
 	 */
 	@Test
 	public void testSearchDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Device> lista = null;//Lista donde se almacenan las ciudades
 		
 		try {
@@ -115,7 +121,7 @@ public class DeviceBLImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 

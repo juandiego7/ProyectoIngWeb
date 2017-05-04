@@ -9,8 +9,9 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 public interface UserBL {
 	
@@ -28,4 +29,6 @@ public interface UserBL {
 	
 	
 	public User getUser(String username) throws MyException;
+	
+	public String login(String username, String password) throws MyException;
 }

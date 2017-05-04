@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,7 @@ public class UserDAOImplTest {
 	 */
 	@Test
 	public void testGetUsers() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<User> lista = null;//Lista donde se almacenan las ciudades
 		
 		try {
@@ -53,6 +55,7 @@ public class UserDAOImplTest {
 	
 	@Test
 	public void testRegisterUser() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		User user = null;		
 		try {
 			user = new User("camilo1","CC","123456778","Camilo","Durango","camilo@gmail.com","123","I",null);
@@ -64,6 +67,7 @@ public class UserDAOImplTest {
 	
 	@Test
 	public void testGetUser() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		User user = null;		
 		try{
 			user = userDAO.getUser("admin"); 

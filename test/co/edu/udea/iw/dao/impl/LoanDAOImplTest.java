@@ -45,6 +45,7 @@ public class LoanDAOImplTest {
 	 */
 	@Test
 	public void testGetLoans() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan las ciudades
 		
 		try {
@@ -57,12 +58,13 @@ public class LoanDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testRegisterLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
 		LoanId loanId = null;
 		User user = null;
@@ -82,12 +84,13 @@ public class LoanDAOImplTest {
 			loan = new Loan(loanId, endDate, null, "PRESTADO");
 			loanDAO.registerLoan(loan);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testRequestLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
 		LoanId loanId = null;
 		User user = null;
@@ -107,12 +110,13 @@ public class LoanDAOImplTest {
 			loan = new Loan(loanId, endDate, null, "RESERVADO");
 			loanDAO.registerLoan(loan);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testGetLoansDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan las ciudades
 		DeviceId deviceId = null;
 		Calendar calendar = null;
@@ -123,7 +127,7 @@ public class LoanDAOImplTest {
 			calendar = Calendar.getInstance();
 			calendar.set(Calendar.YEAR, 2017);// numero de horas a añadir, o restar en caso de horas<0
 			calendar.set(Calendar.MONTH, 3);// numero de horas a añadir, o restar en caso de horas<0
-			calendar.set(Calendar.DATE, 12);
+			calendar.set(Calendar.DATE, 11);
 			date = calendar.getTime();	
 			lista = loanDAO.getLoans(deviceId,date);
 			for(Loan loan: lista){
@@ -134,12 +138,13 @@ public class LoanDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testUpdateLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
 		LoanId loanId = null;
 		User user = null;
@@ -170,11 +175,12 @@ public class LoanDAOImplTest {
 			loanDAO.updateLoan(loan);
 			
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	@Test
 	public void testUpdateLoanStatus() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
 		LoanId loanId = null;
 		User user = null;
@@ -207,11 +213,12 @@ public class LoanDAOImplTest {
 			loanDAO.updateLoan(loan);
 			
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	@Test
 	public void testGetLoansUser() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan las ciudades
 		User user = null;
 		try {
@@ -226,11 +233,12 @@ public class LoanDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	@Test
 	public void testGetLoansUserHistory() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan las ciudades
 		User user = null;
 		try {
@@ -245,12 +253,13 @@ public class LoanDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testGetLoansNumberId() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Loan> lista = null;//Lista donde se almacenan las ciudades
 
 		try {
@@ -263,12 +272,13 @@ public class LoanDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testDeleteLoan() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
 		LoanId loanId = null;
 		User user = null;
@@ -295,7 +305,7 @@ public class LoanDAOImplTest {
 			loan.setLoanId(loanId);
 			loanDAO.deleteLoan(loan);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 }

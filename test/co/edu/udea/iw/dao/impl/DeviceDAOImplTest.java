@@ -7,7 +7,9 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,7 @@ public class DeviceDAOImplTest {
 	 */
 	@Test
 	public void testGetDevices() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Device> lista = null;//Lista donde se almacenan las ciudades
 		
 		try {
@@ -48,12 +51,13 @@ public class DeviceDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testUpdateStatusDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Device device = null;
 		DeviceId deviceId = null;
 		
@@ -66,12 +70,13 @@ public class DeviceDAOImplTest {
 			deviceDAO.updateDevice(device);
 
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testUpdateDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Device device = null;
 		DeviceId deviceId = null;
 		
@@ -84,12 +89,13 @@ public class DeviceDAOImplTest {
 			deviceDAO.updateDevice(device);
 
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testGetDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Device device = null;
 		DeviceId deviceId = null;
 		
@@ -102,12 +108,13 @@ public class DeviceDAOImplTest {
 			assertTrue(device != null);
 
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testRegisterDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Device device = null;		
 		DeviceId deviceId = null;
 		try {
@@ -115,12 +122,13 @@ public class DeviceDAOImplTest {
 			device = new Device(deviceId,"Mouse","I/O","DISPONIBLE","Inalambrico");
 			deviceDAO.registerDevice(device);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 	
 	@Test
 	public void testSearchDevice() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		List<Device> lista = null;//Lista donde se almacenan las ciudades
 		
 		try {
@@ -132,7 +140,7 @@ public class DeviceDAOImplTest {
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {
-			e.printStackTrace();
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
 }

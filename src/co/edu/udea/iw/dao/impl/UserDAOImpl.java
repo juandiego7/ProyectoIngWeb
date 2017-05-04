@@ -14,8 +14,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Implementacion de los metodos del DAO para los usuarios
+ * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 public class UserDAOImpl implements UserDAO{
 	@Autowired
