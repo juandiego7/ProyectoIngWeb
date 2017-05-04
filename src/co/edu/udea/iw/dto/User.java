@@ -32,7 +32,6 @@ public class User {
 	 */
 	public User(String username, String typeId, String numberId, String name, String lastName, String email,
 			String password, String role, User manager) {
-		super();
 		this.username = username;
 		this.typeId = typeId;
 		this.numberId = numberId;

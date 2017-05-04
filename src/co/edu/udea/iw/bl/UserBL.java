@@ -19,5 +19,5 @@ public interface UserBL {
 							 String email,
 							 String password,
 							 String role,
-							 String manager) throws MyException; 
+							 User manager) throws MyException; 
 }

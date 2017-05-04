@@ -33,8 +33,27 @@ public class UserBLImpl implements UserBL {
 							 String email,
 							 String password,
 							 String role,
-							 String manager) throws MyException {
-				
+							 User manager) throws MyException {
+		if (username == null || "".equals(username)) {
+			throw new MyException("El nombre de usario no puede estar vacio");
+		}
+		if (typeId == null | "".equals(typeId)) {
+			throw new MyException("El tipo de identificacion no puede estar vacio");
+		}
+		if (numberId == null || "".equals(numberId)) {
+			throw new MyException("El numero de identificacion no puede estar vacio");
+		}
+		if (name == null | "".equals(name)) {
+			throw new MyException("El nombre no puede estar vacio");
+		}
+		if (password == null || "".equals(password)) {
+			throw new MyException("La contraseña no puede ser vacia");
+		}
+		if (role == null | "".equals(role)) {
+			throw new MyException("El role no puede estar vacio");
+		}
+		User user = new User(username, typeId, numberId, name, lastName, email, password, role, manager);
+		userDAO.registerUser(user);
 	}
 
 	
