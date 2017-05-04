@@ -46,4 +46,10 @@
 	<bean id="userBL" class="co.edu.udea.iw.bl.impl.UserBLImpl">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
+	<bean id="deviceBL" class="co.edu.udea.iw.bl.impl.DeviceBLImpl">
+		<property name="deviceDAO" ref="deviceDAO"></property>
+	</bean>
+<!-- 	<bean id="loanBL" class="co.edu.udea.iw.bl.impl.LoanBLImpl"> -->
+<!-- 		<property name="loanDAO" ref="loanDAO"></property> -->
+<!-- 	</bean> -->
 </beans>
