@@ -28,8 +28,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Pruebas de los m√©todos del DAO de los pr√©stamos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
@@ -38,8 +40,8 @@ public class LoanDAOImplTest {
 
 	@Autowired//Inyectar datos desde la base de datos
 	LoanDAO loanDAO;
-	
 	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
+	
 	/**
 	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans()}.
 	 */
@@ -62,6 +64,9 @@ public class LoanDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#registerLoan(Loan)}.
+	 */
 	@Test
 	public void testRegisterLoan() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -72,7 +77,7 @@ public class LoanDAOImplTest {
 		Device device = null;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
-		calendar.add(Calendar.HOUR, 2);  // numero de horas a aÒadir, o restar en caso de horas<0
+		calendar.add(Calendar.HOUR, 2);  // numero de horas a aÔøΩadir, o restar en caso de horas<0
 		Date endDate = calendar.getTime();
 		try {
 			user = new User();
@@ -88,6 +93,9 @@ public class LoanDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#registerLoan(Loan)}.
+	 */
 	@Test
 	public void testRequestLoan() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -98,7 +106,7 @@ public class LoanDAOImplTest {
 		Device device = null;
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
-		calendar.add(Calendar.HOUR, 2);  // numero de horas a aÒadir, o restar en caso de horas<0
+		calendar.add(Calendar.HOUR, 2);  // numero de horas a aÔøΩadir, o restar en caso de horas<0
 		Date endDate = calendar.getTime();
 		try {
 			user = new User();
@@ -114,6 +122,9 @@ public class LoanDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans(DeviceId, Date)}.
+	 */
 	@Test
 	public void testGetLoansDevice() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -125,8 +136,8 @@ public class LoanDAOImplTest {
 			deviceId = new DeviceId("0001", "1");
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			date = calendar.getTime();	
 			lista = loanDAO.getLoans(deviceId,date);
@@ -142,6 +153,9 @@ public class LoanDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#updateLoan(Loan)}.
+	 */
 	@Test
 	public void testUpdateLoan() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -155,8 +169,8 @@ public class LoanDAOImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
@@ -178,6 +192,10 @@ public class LoanDAOImplTest {
 			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
+	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#updateLoan(Loan)}.
+	 */
 	@Test
 	public void testUpdateLoanStatus() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -191,8 +209,8 @@ public class LoanDAOImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
@@ -216,6 +234,10 @@ public class LoanDAOImplTest {
 			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
+	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans(User, String)}.
+	 */
 	@Test
 	public void testGetLoansUser() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -236,6 +258,10 @@ public class LoanDAOImplTest {
 			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
+	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans(User, String)}.
+	 */
 	@Test
 	public void testGetLoansUserHistory() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -257,6 +283,9 @@ public class LoanDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#getLoans(String, String)}.
+	 */
 	@Test
 	public void testGetLoansNumberId() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -276,6 +305,9 @@ public class LoanDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.LoanDAOImpl#deleteLoan(Loan)}.
+	 */
 	@Test
 	public void testDeleteLoan() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -289,8 +321,8 @@ public class LoanDAOImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);

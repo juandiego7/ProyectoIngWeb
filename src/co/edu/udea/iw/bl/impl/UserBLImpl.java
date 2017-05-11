@@ -14,21 +14,43 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * Implementacion de la logica de negocio para los usuarios
- * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * Implementación de la lógica de negocio para los usuarios
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
  * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
- * @version 2.0
+ * @version 2.1
  */
 @Transactional
 public class UserBLImpl implements UserBL {
 
 	private UserDAO userDAO;
 
+	/**
+	 * Obtiene la lista de todos los usuarios que existan en la base de datos
+	 * @return Lista de Usuarios
+	 * @see co.edu.udea.iw.bl.UserBL#getUsers()
+	 * @throws MyException
+	 * Lanzamos nuestra propia exception para manejarla en una capa superior
+	 */
 	@Override
 	public List<User> getUsers() throws MyException {
 		return userDAO.getUsers();
 	}
 	
+	/**
+	 * Inserta un usuario en la base de datos con la información ingresada como parámetro
+	 * @param username
+	 * @param typeId
+	 * @param numberId
+	 * @param name
+	 * @param lastName
+	 * @param email
+	 * @param password
+	 * @param role
+	 * @param manager
+	 * @see co.edu.udea.iw.bl.UserBL#registerUser(String, String, String, String, String, String, String, String, User)
+	 * @throws MyException
+	 * Lanzamos nuestra propia exception para manejarla en una capa superior
+	 */
 	@Override
 	public void registerUser(String username,
 							 String typeId,
@@ -61,6 +83,14 @@ public class UserBLImpl implements UserBL {
 		userDAO.registerUser(user);
 	}
 
+	/**
+	 * Obtiene el usuario correspondiente al username ingresado como parámetro
+	 * @param username
+	 * @return Un Usuario
+	 * @see co.edu.udea.iw.bl.UserBL#getUser(String)
+	 * @throws MyException
+	 * Lanzamos nuestra propia exception para manejarla en una capa superior
+	 */
 	@Override
 	public User getUser(String username) throws MyException {
 		if (username == null || "".equals(username)) {
@@ -68,6 +98,16 @@ public class UserBLImpl implements UserBL {
 		}
 		return userDAO.getUser(username);
 	}
+	
+	/**
+	 * Valida un usuario con por medio de su username y su contraseña(iniciar sesión)
+	 * @param username
+	 * @param password
+	 * @return String("Usuario validado" o "Usuario o contraseña incorrecto")
+	 * @see co.edu.udea.iw.bl.UserBL#login(String, String)
+	 * @throws MyException
+	 * Lanzamos nuestra propia exception para manejarla en una capa superior
+	 */
 	@Override
 	public String login(String username, String password) throws MyException {
 		User user = getUser(username);

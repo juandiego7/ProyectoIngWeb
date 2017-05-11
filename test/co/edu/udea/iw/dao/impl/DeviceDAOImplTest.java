@@ -23,8 +23,10 @@ import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Pruebas de los métodos del DAO de los dispositivos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
@@ -32,8 +34,8 @@ import co.edu.udea.iw.exception.MyException;
 public class DeviceDAOImplTest {
 	@Autowired//Inyectar datos desde la base de datos
 	DeviceDAO deviceDAO;
-	
 	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
+	
 	/**
 	 * Test method for {@link co.edu.udea.iw.dao.impl.DeviceDAOImpl#getDevices()}.
 	 */
@@ -55,6 +57,9 @@ public class DeviceDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.DeviceDAOImpl#updateDevice(Device)}.
+	 */
 	@Test
 	public void testUpdateStatusDevice() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -74,6 +79,9 @@ public class DeviceDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.DeviceDAOImpl#updateDevice(Device)}.
+	 */
 	@Test
 	public void testUpdateDevice() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -93,6 +101,9 @@ public class DeviceDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.DeviceDAOImpl#getDevice(DeviceId)}.
+	 */
 	@Test
 	public void testGetDevice() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -112,6 +123,9 @@ public class DeviceDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.DeviceDAOImpl#registerDevice(Device)}.
+	 */
 	@Test
 	public void testRegisterDevice() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -126,6 +140,9 @@ public class DeviceDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.DeviceDAOImpl#searchDevice(String, String, String)}.
+	 */
 	@Test
 	public void testSearchDevice() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j

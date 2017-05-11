@@ -28,8 +28,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Pruebas de los m√©todos de la l√≥gica de negocio de los pr√©stamos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
@@ -71,7 +73,7 @@ public class LoanBLImplTest {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date()); // Configuramos la fecha que se recibe
-		calendar.add(Calendar.HOUR, 2);  // numero de horas a aÒadir, o restar en caso de horas<0
+		calendar.add(Calendar.HOUR, 2);  // numero de horas a aÔøΩadir, o restar en caso de horas<0
 		Date endDate = calendar.getTime();
 		try {
 			loanBL.registerLoan("raulio2",new Date(),endDate,null,"RESERVADO","0004","1");
@@ -92,8 +94,8 @@ public class LoanBLImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
@@ -124,8 +126,8 @@ public class LoanBLImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
@@ -158,8 +160,8 @@ public class LoanBLImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 11);
 			calendar.set(Calendar.HOUR,22);
 			calendar.set(Calendar.MINUTE,0);
@@ -231,8 +233,8 @@ public class LoanBLImplTest {
 		try {
 			date = new Date();
 			calendar = Calendar.getInstance();
-			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÒadir, o restar en caso de horas<0
-			calendar.set(Calendar.MONTH, 3);// numero de horas a aÒadir, o restar en caso de horas<0
+			calendar.set(Calendar.YEAR, 2017);// numero de horas a aÔøΩadir, o restar en caso de horas<0
+			calendar.set(Calendar.MONTH, 3);// numero de horas a aÔøΩadir, o restar en caso de horas<0
 			calendar.set(Calendar.DATE, 12);
 			calendar.set(Calendar.HOUR,10);
 			calendar.set(Calendar.MINUTE,0);

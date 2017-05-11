@@ -20,8 +20,8 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * Implementacion de los metodos del DAO para los prestamos
- * @author Raul Antonio Martinez - rantonio.martinez@udea.edu.co
+ * Implementación de los métodos del DAO para los préstamos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
  * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
  * @version 2.0
  */

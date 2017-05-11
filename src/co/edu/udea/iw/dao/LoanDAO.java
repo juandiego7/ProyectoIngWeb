@@ -10,8 +10,9 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
+ * Interfaz para declarar los métodos de los préstamos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
  * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
- * Interfaz para declarar los metodos de los prestamos
  * version 2.0
  */
 public interface LoanDAO {

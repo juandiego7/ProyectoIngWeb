@@ -5,10 +5,12 @@ import java.util.List;
 import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.exception.MyException;
+
 /**
- * 
+ * Interfaz para declarar todo los métodos asociados a los dispositivos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
  * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
- * Interfaz para declarar todo los metodos asociados a los dispositivos
+ * @version 2.0
  */
 
 public interface DeviceDAO {

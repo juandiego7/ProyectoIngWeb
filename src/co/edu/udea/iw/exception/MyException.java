@@ -6,10 +6,10 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
- * 
- * @author Juan Diego
+ * Manejo de nuestras propias excepciones y mandarlas a una capa superior
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
  * @version 1.0
- *
  */
 
 public class MyException extends Exception {

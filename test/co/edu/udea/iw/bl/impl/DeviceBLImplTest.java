@@ -22,8 +22,10 @@ import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Pruebas de los métodos de la lógica de negocio de los dispositivos
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
@@ -35,6 +37,7 @@ public class DeviceBLImplTest {
 	
 	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	/**
+	 *
 	 * Test method for {@link co.edu.udea.iw.bl.impl.DeviceBLImpl#getDevices()}.
 	 */
 	@Test

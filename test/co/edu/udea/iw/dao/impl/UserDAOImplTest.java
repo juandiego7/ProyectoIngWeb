@@ -20,8 +20,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Pruebas de los métodos del DAO de los usuarios
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
@@ -30,8 +32,8 @@ public class UserDAOImplTest {
 
 	@Autowired//Inyectar datos desde la base de datos
 	UserDAO userDAO;
-	
 	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
+	
 	/**
 	 * Test method for {@link co.edu.udea.iw.dao.impl.UserDAOImpl#getUsers()}.
 	 */
@@ -53,6 +55,9 @@ public class UserDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.UserDAOImpl#registerUser(User)}.
+	 */
 	@Test
 	public void testRegisterUser() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -65,6 +70,9 @@ public class UserDAOImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.dao.impl.UserDAOImpl#getUser(String)}.
+	 */
 	@Test
 	public void testGetUser() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j

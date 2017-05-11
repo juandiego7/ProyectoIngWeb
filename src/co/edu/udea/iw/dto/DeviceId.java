@@ -3,8 +3,10 @@ package co.edu.udea.iw.dto;
 import java.io.Serializable;
 
 /**
- * @author Juan Diego
- *
+ * Modelo relacional(pojo) para la clave primaria de un dispositivo 
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 public class DeviceId implements Serializable{
 	private String code;

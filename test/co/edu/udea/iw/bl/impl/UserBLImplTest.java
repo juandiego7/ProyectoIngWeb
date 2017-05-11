@@ -22,8 +22,10 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * @author Juan Diego
- *
+ * Pruebas de los métodos de la lógica de negocio de los usuarios
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
+ * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
+ * @version 2.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)//Correr con otro running
 @Transactional//transaccional
@@ -32,9 +34,11 @@ public class UserBLImplTest {
 
 	@Autowired
 	UserBL userBL;
-	
 	Logger logger = Logger.getLogger(MyException.class);//Para manejar los errores
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.UserBLImpl#getUsers()}.
+	 */
 	@Test
 	public void testGetUsers() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -66,6 +70,9 @@ public class UserBLImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.UserBLImpl#getUser(String)}.
+	 */
 	@Test
 	public void testGetUser() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
@@ -79,6 +86,9 @@ public class UserBLImplTest {
 		}
 	}
 	
+	/**
+	 * Test method for {@link co.edu.udea.iw.bl.impl.UserBLImpl#login(String, String))}.
+	 */
 	@Test
 	public void testLogin() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j

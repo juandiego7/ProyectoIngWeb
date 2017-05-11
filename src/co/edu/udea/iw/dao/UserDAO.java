@@ -6,7 +6,8 @@ import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
- * Interfaz para definir los metodos para los usuarios
+ * Interfaz para definir los métodos para los usuarios
+ * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
  * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
  * @version 2.0
  */
