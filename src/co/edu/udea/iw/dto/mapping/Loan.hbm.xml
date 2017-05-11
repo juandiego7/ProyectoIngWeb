@@ -6,25 +6,25 @@
     <class name="co.edu.udea.iw.dto.Loan" table="loans">
     	<composite-id name="loanId" class="co.edu.udea.iw.dto.LoanId">
             <key-many-to-one name="username" class="co.edu.udea.iw.dto.User">
-        		<column name="USERNAME"></column>
+        		<column name="USERNAME" not-null="true" length="20"></column>
         	</key-many-to-one>
         	<key-many-to-one name="device" class="co.edu.udea.iw.dto.Device">
-        		<column name="CODE"></column>
-        		<column name="COPY"></column>
+        		<column name="CODE" not-null="true" length="15"></column>
+        		<column name="COPY" not-null="true" length="5"></column>
         	</key-many-to-one>
             <key-property name="startDate" type="java.util.Date">
-            	<column name="STARTDATE" />
+            	<column name="STARTDATE" not-null="true"/>
         	</key-property>
         </composite-id>
         
         <property name="endDate" type="java.util.Date">
-            <column name="ENDDATE" />
+            <column name="ENDDATE" not-null="true"/>
         </property>
         <property name="returnDate" type="java.util.Date">
             <column name="RETURNDATE" />
         </property>
         <property name="status" type="java.lang.String">
-            <column name="STATUS" />
+            <column name="STATUS" not-null="true" length="15"/>
         </property>
     </class>
 </hibernate-mapping>
