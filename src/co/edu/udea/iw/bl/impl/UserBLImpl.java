@@ -52,7 +52,7 @@ public class UserBLImpl implements UserBL {
 			throw new MyException("El nombre no puede estar vacio");
 		}
 		if (password == null || "".equals(password)) {
-			throw new MyException("La contraseña no puede ser vacia");
+			throw new MyException("La contraseï¿½a no puede ser vacia");
 		}
 		if (role == null | "".equals(role)) {
 			throw new MyException("El role no puede estar vacio");
@@ -76,7 +76,7 @@ public class UserBLImpl implements UserBL {
 				return "Usuario validado";
 			}
 		}
-		throw new MyException("Usuario o contraseña incorrecto");
+		return "Usuario o contraseÃ±a incorrecto";
 	}	
 	
 	public UserDAO getUserDAO() {

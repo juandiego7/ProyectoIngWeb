@@ -78,5 +78,22 @@ public class UserBLImplTest {
 			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testLogin() {
+		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
+		String result = "";
+		String username = "";
+		String password = "";
+		try{
+			username = "admin";
+			password = "root";
+			result = userBL.login(username, password); 
+			System.out.println("Resultado Login: "+result);
+			assertTrue(result != null && "Usuario validado".equals(result));		
+		}catch (MyException e) {
+			logger.log(Level.ERROR,"Error consultando: "+ e.getMessage());
+		}
+	}
 
 }

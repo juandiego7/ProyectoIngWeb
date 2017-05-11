@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 11-abr-2017 18:30:52 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="co.edu.udea.iw.dto.Loan" table="LOANS">
+    <class name="co.edu.udea.iw.dto.Loan" table="loans">
     	<composite-id name="loanId" class="co.edu.udea.iw.dto.LoanId">
             <key-many-to-one name="username" class="co.edu.udea.iw.dto.User">
         		<column name="USERNAME"></column>

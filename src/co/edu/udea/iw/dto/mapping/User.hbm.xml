@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 11-abr-2017 18:30:52 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="co.edu.udea.iw.dto.User" table="USERS">
+    <class name="co.edu.udea.iw.dto.User" table="users">
         <id name="username" type="java.lang.String">
             <column name="USERNAME" />
             <generator class="assigned" />
