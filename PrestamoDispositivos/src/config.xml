@@ -54,4 +54,6 @@
 		<property name="userDAO" ref="userDAO"></property>
 		<property name="deviceDAO" ref="deviceDAO"></property>
 	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<context:component-scan base-package="co.edu.udea.prestamos.ws"></context:component-scan>
 </beans>

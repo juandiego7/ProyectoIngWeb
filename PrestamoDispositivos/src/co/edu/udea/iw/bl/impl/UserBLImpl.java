@@ -116,7 +116,7 @@ public class UserBLImpl implements UserBL {
 				return "Usuario validado";
 			}
 		}
-		return "Usuario o contraseña incorrecto";
+		return "Usuario o contrasena incorrecto";
 	}	
 	
 	public UserDAO getUserDAO() {
