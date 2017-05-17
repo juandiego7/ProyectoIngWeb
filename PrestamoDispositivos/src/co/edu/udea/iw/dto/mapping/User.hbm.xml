@@ -29,6 +29,6 @@
         <property name="role" type="java.lang.String">
             <column name="ROLE" not-null="true" length="1"/>
         </property>
-        <one-to-one name="manager" class="co.edu.udea.iw.dto.User"></one-to-one>
+        <one-to-one name="manager" class="co.edu.udea.iw.dto.User" lazy="false"></one-to-one>
     </class>
 </hibernate-mapping>

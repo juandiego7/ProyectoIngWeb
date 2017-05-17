@@ -5,10 +5,10 @@
 <hibernate-mapping>
     <class name="co.edu.udea.iw.dto.Loan" table="loans">
     	<composite-id name="loanId" class="co.edu.udea.iw.dto.LoanId">
-            <key-many-to-one name="username" class="co.edu.udea.iw.dto.User">
+            <key-many-to-one name="username" class="co.edu.udea.iw.dto.User" lazy="false">
         		<column name="USERNAME" not-null="true" length="20"></column>
         	</key-many-to-one>
-        	<key-many-to-one name="device" class="co.edu.udea.iw.dto.Device">
+        	<key-many-to-one name="device" class="co.edu.udea.iw.dto.Device" lazy="false">
         		<column name="CODE" not-null="true" length="15"></column>
         		<column name="COPY" not-null="true" length="5"></column>
         	</key-many-to-one>

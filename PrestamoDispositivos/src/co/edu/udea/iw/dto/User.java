@@ -1,11 +1,18 @@
 package co.edu.udea.iw.dto;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  * Modelo relacional (pojo) de los usuarios
  * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co
  * @author Juan Diego Goez Durango - diego.goez@udea.edu.co
  * @version 2.0
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class User {
 		
 	private String username;
@@ -92,6 +99,8 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	@XmlTransient
 	public User getManager() {
 		return manager;
 	}
