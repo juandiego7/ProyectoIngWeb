@@ -157,4 +157,24 @@ public class DeviceBLImpl implements DeviceBL {
 	public void setDeviceDAO(DeviceDAO deviceDAO) {
 		this.deviceDAO = deviceDAO;
 	}
+
+	@Override
+	public void updateStatus(String code, String copy, String status) throws MyException {
+		if (code == null || "".equals(code)) {
+			throw new MyException("El codigo no puede estar vacio");
+		}
+		if (copy == null || "".equals(copy)) {
+			throw new MyException("La copia no puede ser vacio");
+		}
+		if (status == null || "".equals(status)) {
+			throw new MyException("El estado no puede ser vacio");
+		}		
+		Device device = getDevice(code, copy);
+		if (device == null) {
+			throw new MyException("El dispositivo no se encuentra registrado");
+		}
+		device.setStatus(status);
+		deviceDAO.updateDevice(device);
+		
+	}
 }

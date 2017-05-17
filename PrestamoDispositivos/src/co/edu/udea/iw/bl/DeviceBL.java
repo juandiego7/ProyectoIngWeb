@@ -39,6 +39,16 @@ public interface DeviceBL {
 							 String type,
 							 String status,
 							 String details) throws MyException;
+	
+	/**
+	 * Actualiza el estado de un dispositvo en la base de datos
+	 * @param code
+	 * @param copy
+	 * @param status
+	 * @throws MyException
+	 */
+	
+	public void updateStatus(String code, String copy, String status) throws MyException;
 	/**
 	 * Obtiene el dispositivo que corresponde con código y copia ingresados como parámetros  
 	 * @param code
