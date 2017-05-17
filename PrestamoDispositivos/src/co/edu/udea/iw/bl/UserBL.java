@@ -59,7 +59,7 @@ public interface UserBL {
 	public User getUser(String username) throws MyException;
 	
 	/**
-	 * Valida un usuario con por medio de su username y su contraseña(iniciar sesión)
+	 * Valida un usuario por medio de su username y su contrasena(iniciar sesion)
 	 * @param username
 	 * @param password
 	 * @return String("Usuario validado" o "Usuario o contraseña incorrecto")
