@@ -15,17 +15,21 @@ import co.edu.udea.iw.exception.MyException;
 @Path("usuario")
 @Component//Para reconocer el proyecto de Spring
 public class UserWS {
+	
 	@Autowired
 	UserBL userBL;
 	
 	@GET//metodo al que responde
-	@Produces(MediaType.TEXT_HTML)
-	public String autenticar(@QueryParam("username")String username,
+	@Path("login")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void autenticar(@QueryParam("username")String username,
 							 @QueryParam("password")String password){
+		//return "sssss";
 		try {
-			return userBL.login(username, password);
+			//System.out.println("username _: " + userBL.login(username, password));
+			userBL.login(username, password);
 		} catch (MyException e) {
-				return e.getMessage();
+				e.getMessage();
 		}
 	}
 }

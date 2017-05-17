@@ -1,10 +1,8 @@
 //Clase para manejar errores
 package co.edu.udea.iw.exception;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
+import org.apache.log4j.Logger;
 /**
  * Manejo de nuestras propias excepciones y mandarlas a una capa superior
  * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co

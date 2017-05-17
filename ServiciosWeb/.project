@@ -3,6 +3,7 @@
 	<name>ServiciosWeb</name>
 	<comment></comment>
 	<projects>
+		<project>PrestamoDispositivos</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

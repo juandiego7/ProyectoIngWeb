@@ -1,11 +1,7 @@
 package co.edu.udea.iw.bl.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.bl.UserBL;

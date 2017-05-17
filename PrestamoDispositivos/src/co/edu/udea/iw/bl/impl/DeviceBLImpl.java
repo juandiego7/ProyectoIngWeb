@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.bl.DeviceBL;
 import co.edu.udea.iw.dao.DeviceDAO;
-import co.edu.udea.iw.dao.UserDAO;
 import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.exception.MyException;

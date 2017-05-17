@@ -3,10 +3,7 @@ package co.edu.udea.iw.bl;
 import java.util.Date;
 import java.util.List;
 
-import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.dto.Loan;
-import co.edu.udea.iw.dto.LoanId;
-import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**

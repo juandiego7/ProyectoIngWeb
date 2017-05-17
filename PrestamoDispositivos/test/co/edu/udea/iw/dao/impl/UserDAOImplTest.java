@@ -13,9 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.udea.iw.dao.LoanDAO;
 import co.edu.udea.iw.dao.UserDAO;
-import co.edu.udea.iw.dto.Loan;
 import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
@@ -45,9 +43,9 @@ public class UserDAOImplTest {
 		try {
 			lista = userDAO.getUsers();
 			for(User user: lista){
-				System.out.println("Name: "+user.getName() + "\n" +
+				System.out.println("Name: "+user.getUsername() + "\n" +
 									"Apellidos: "+user.getLastName() + "\n" +
-									"Email: "+user.getEmail());
+									"Email: "+user.getPassword());
 			}
 			assertTrue(lista.size()>0);
 		} catch (MyException e) {

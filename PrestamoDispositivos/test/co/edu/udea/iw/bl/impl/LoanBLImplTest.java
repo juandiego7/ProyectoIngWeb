@@ -20,11 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.udea.iw.bl.LoanBL;
-import co.edu.udea.iw.dto.Device;
-import co.edu.udea.iw.dto.DeviceId;
 import co.edu.udea.iw.dto.Loan;
-import co.edu.udea.iw.dto.LoanId;
-import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 
 /**
@@ -151,10 +147,6 @@ public class LoanBLImplTest {
 	public void testUpdateLoan() {
 		PropertyConfigurator.configure("src/log4j.properties");//propiedades para configurar log4j
 		Loan loan = null;
-		LoanId loanId = null;
-		User user = null;
-		DeviceId deviceId = null;
-		Device device = null;
 		Calendar calendar = null;
 		Date date = null;
 		try {

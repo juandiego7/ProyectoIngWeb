@@ -3,7 +3,7 @@
   <display-name>ServiciosWeb</display-name>
   
   <servlet>
-  	<servlet-name>Servicios</servlet-name>
+  	<servlet-name>Services</servlet-name>
   	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
   	<init-param>
   		<param-name>com.sun.jersey.config.property.packages</param-name>
@@ -13,7 +13,7 @@
   </servlet>
   
   <servlet-mapping>
-  	<servlet-name>Servicios</servlet-name>
+  	<servlet-name>Services</servlet-name>
   	<url-pattern>/prestamos/*</url-pattern>
   </servlet-mapping>
   
@@ -23,8 +23,6 @@
   
   <context-param>
   	<param-name>contextConfigLocation</param-name>
-  	<param-value>
-  		classpath:config.xml
-  	</param-value>
+  	<param-value>classpath:config.xml</param-value>
   </context-param>
 </web-app>
