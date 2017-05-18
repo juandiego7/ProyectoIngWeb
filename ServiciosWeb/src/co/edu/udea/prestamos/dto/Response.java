@@ -3,21 +3,21 @@ package co.edu.udea.prestamos.dto;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Answer {
+public class Response {
 	
 	private String type;
 	private String message;
 	/**
 	 * 
 	 */
-	public Answer() {
+	public Response() {
 		
 	}
 	/**
 	 * @param type
 	 * @param message
 	 */
-	public Answer(String type, String message) {
+	public Response(String type, String message) {
 		this.type = type;
 		this.message = message;
 	}

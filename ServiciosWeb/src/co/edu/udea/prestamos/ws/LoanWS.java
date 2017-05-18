@@ -3,9 +3,11 @@ package co.edu.udea.prestamos.ws;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -18,9 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.edu.udea.iw.bl.LoanBL;
+import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.Loan;
 import co.edu.udea.iw.exception.MyException;
-import co.edu.udea.prestamos.dto.Answer;
+import co.edu.udea.prestamos.dto.Response;
 
 /**
  * Implementacion de los servicios web de la logica de negocio para los dispositivos
@@ -37,23 +40,30 @@ public class LoanWS {
 	LoanBL loanBL;
 	
 	/**
-	 * Servicio para retornar todos los prÃ©stamos
+	 * Servicio para retornar todos los prestamos o solicitudes de prestamos
+	 * @see RF11 with status=RESERVADO
+	 * @see RF12 with status=PRESTADO
 	 * @return Lista de PrÃ©stamos
 	 * @throws RemoteException
 	 */
 	@GET//Metodo http con que responde este metodo
 	@Path("all")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-	public List<Loan> getAll() throws RemoteException{
+	public List<Loan> getAll(
+			@QueryParam("username")String username,
+			@QueryParam("status")String status
+			) throws RemoteException{
 		try {
-			return loanBL.getLoans();
+			return loanBL.getLoansUser(username, status);
 		} catch (MyException e) {
 			throw new RemoteException("Problema consultando");
 		}
 	}
 	
 	/**
-	 * Servicio para registrar un prestamo
+	 * Servicio para registrar(crear) un prestamo
+	 * @see RF04 with status=RESERVADO
+	 * @see RF14 with status=PRESTADO
 	 * @param username
 	 * @param startDate
 	 * @param endDate
@@ -61,17 +71,16 @@ public class LoanWS {
 	 * @param status
 	 * @param code
 	 * @param copy
-	 * @return Answer
+	 * @return Response - Confirmación de creación
 	 * @throws RemoteException
 	 */
 	@POST
 	@Path("register")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Answer registerLoan(
+	public Response registerLoan(
 			@QueryParam("username")String username,
 			@QueryParam("startDate")String startDate,
 			@QueryParam("endDate")String endDate,
-			@QueryParam("returnDate")String returnDate,
 			@QueryParam("status")String status,
 			@QueryParam("code")String code,
 			@QueryParam("copy")String copy) throws RemoteException{
@@ -85,8 +94,7 @@ public class LoanWS {
 		try {
 			startD = simpleDateFormat.parse(startDate);
 			endD = simpleDateFormat.parse(endDate);
-			returnD = simpleDateFormat.parse(returnDate);
-			loanBL.registerLoan(username, startD, endD, returnD, status, code, copy);
+			loanBL.registerLoan(username, startD, endD, null, status, code, copy);
 			type = "ok";
 			message = "Prestamo registrado";
 		}catch (MyException e) {
@@ -97,9 +105,18 @@ public class LoanWS {
 			type = "error";
 			message = "Error, verifique el formato de la fecha ingresada";
 		}		
-		return new Answer(type, message);
+		return new Response(type, message);
 	}
 	
+	/**
+	 * Retorna los prestamos para un dispositvo en la fecha(dia) indicado
+	 * @see RF02
+	 * @param code
+	 * @param copy
+	 * @param date
+	 * @return Lista de prestamos
+	 * @throws RemoteException
+	 */
 	@GET
 	@Path("get")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -120,14 +137,23 @@ public class LoanWS {
 		}
 	} 
 	
+	/**
+	 * Actualiza el estado de un prestamo a PRESTADO (Aprobar prestamo)
+	 * @see RF05
+	 * @param username
+	 * @param startDate
+	 * @param code
+	 * @param copy
+	 * @return Response - Confirmación de actualización
+	 */
 	@PUT
 	@Path("lend")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Answer updateStatusLoan(
+	public Response updateStatusLoan(
 			@QueryParam("username")String username, 
 			@QueryParam("startDate")String startDate,  
 			@QueryParam("code")String code, 
-			@QueryParam("copy")String copy){
+			@QueryParam("copy")String copy) throws RemoteException{
 		Date date = null;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH");
 		String message = null;
@@ -146,17 +172,27 @@ public class LoanWS {
 			type = "error";
 			message = "Error, verifique el formato de la fecha ingresada";
 		}
-		return new Answer(type, message);
+		return new Response(type, message);
 	}
 	
+	/**
+	 * Actualiza el estado(status) a DEVUELTO y fecha de devolución (returnDate) 
+	 * de un préstamo a la fecha actual, lo que significa que significa que el dispositvo
+	 * fue entregado en el Laboratorio 
+	 * @param username
+	 * @param startDate
+	 * @param code
+	 * @param copy
+	 * @return Response - Confirmación de actualización
+	 */
 	@PUT
 	@Path("return")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Answer updateReturnLoan(
+	public Response updateReturnLoan(
 			@QueryParam("username")String username, 
 			@QueryParam("startDate")String startDate,  
 			@QueryParam("code")String code, 
-			@QueryParam("copy")String copy){
+			@QueryParam("copy")String copy) throws RemoteException{
 		String message = null;
 		String type = null;
 		Date date = null;
@@ -176,8 +212,73 @@ public class LoanWS {
 			type = "error";
 			message = "Error, verifique el formato de la fecha ingresada";
 		}
-		return new Answer(type, message);
+		return new Response(type, message);
 	}
+	
+	/**
+	 * Obtiene la lista de solicitudes de prestamos para el usuario con el tipo y
+	 * número de identificación ingresados
+	 * @see RF13 
+	 * @param typeId
+	 * @param numberId
+	 * @return Lista de Prestamos
+	 * @throws RemoteException
+	 */
+	@GET
+	@Path("search")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Loan> searchLoan(
+			@QueryParam("typeId")String typeId, 
+			@QueryParam("numberId")String numberId) throws RemoteException{
+		try {
+			return loanBL.getLoansDevice(typeId, numberId);
+		} catch (MyException e) {
+			throw new RemoteException("Error consultando los prestamos por tipo y numero de Id");
+		}
+	}
+	
+	/**
+	 * Deshace(elimina) elimina una solicitud de prestamo
+	 * @see RF15 
+	 * @param username
+	 * @param startDate
+	 * @param code
+	 * @param copy
+	 * @return Response - Confirmación del delete
+	 * @throws RemoteException
+	 */
+	@DELETE
+	@Path("delete")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response deleteLoan(
+			@QueryParam("username")String username, 
+			@QueryParam("startDate")String startDate,  
+			@QueryParam("code")String code, 
+			@QueryParam("copy")String copy) throws RemoteException{
+		String message = null;
+		String type = null;
+		Date date = null;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH");
+		try {
+			if (startDate != null && !"".equals(startDate)){
+				date = simpleDateFormat.parse(startDate);
+			}
+			loanBL.deleteLoan(username, code, copy, date);
+			type = "ok";
+			message = "Solicitud de prestamo eliminada";
+		}catch (MyException e) {
+			type = "error";
+			message = e.getMessage();
+		} catch (ParseException e) {
+			type = "error";
+			message = "Error, verifique el formato de la fecha ingresada";
+		}		
+		return new Response(type, message);
+	}
+	
+	
+	
+	
 	
 
 }

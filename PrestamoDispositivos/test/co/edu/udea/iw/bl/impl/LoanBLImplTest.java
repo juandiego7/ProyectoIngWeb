@@ -162,7 +162,6 @@ public class LoanBLImplTest {
 			loan = loanBL.getLoan("juan.goez", "0001", "1", date);
 			loanBL.updateLoan("juan.goez",
 							  loan.getLoanId().getStartDate(),
-							  loan.getEndDate(),
 							  new Date(),
 							  "ENTREGADO",
 							  "0001","1");

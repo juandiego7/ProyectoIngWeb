@@ -18,7 +18,7 @@ import co.edu.udea.iw.bl.DeviceBL;
 import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
-import co.edu.udea.prestamos.dto.Answer;
+import co.edu.udea.prestamos.dto.Response;
 
 /**
  * Implementacion de los servicios web de la logica de negocio para los dispositivos
@@ -36,6 +36,7 @@ public class DeviceWS {
 	
 	/**
 	 * Metodo para retornar todo los dispositivos
+	 * @see RF09
 	 * @return List<Device> 
 	 * @throws RemoteException
 	 */
@@ -53,13 +54,14 @@ public class DeviceWS {
 	
 	/**
 	 * Servicio para actualizar el estado de un dispositivo
-	 * @return Answer - Confirmacion de la actualizacion
+	 * @see RF06 with status=INHABILITADO
+	 * @return Response - Confirmacion de actualizacion
 	 * @throws RemoteException
 	 */
 	@PUT//Metodo http con que responde este metodo
 	@Path("status")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-	public Answer updateStatus(@QueryParam("code")String code,
+	public Response updateStatus(@QueryParam("code")String code,
 							   @QueryParam("copy")String copy,
 							   @QueryParam("status")String status) throws RemoteException{
 		String message = null;
@@ -73,14 +75,15 @@ public class DeviceWS {
 			type="ok";
 			throw new RemoteException("Problema consultando");
 		}
-		return new Answer(type,message); 
+		return new Response(type,message); 
 	}
 
 	/**
-	 * Servicio para obtener el dispositivo que corresponde con un cÃ³digo y copia ingresados como parÃ¡metros
+	 * Servicio para obtener el dispositivo que corresponde con un codigo y copia ingresados como parametros
+	 * @see RF17
 	 * @param code
 	 * @param copy
-	 * @return
+	 * @return Device
 	 * @throws RemoteException
 	 */
 	@GET//Metodo http con que responde este metodo
@@ -97,19 +100,20 @@ public class DeviceWS {
 	
 	/**
 	 * Servicio para registrar un dispositivos
+	 * @see RF07
 	 * @param code
 	 * @param copy
 	 * @param name
 	 * @param type
 	 * @param status
 	 * @param details
-	 * @return
+	 * @return Response - Confirmación de creación
 	 * @throws RemoteException
 	 */
 	@POST//Metodo http con que responde este metodo
 	@Path("register")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-	public Answer registerDevice(@QueryParam("code")String code,
+	public Response registerDevice(@QueryParam("code")String code,
 								 @QueryParam("copy")String copy,
 								 @QueryParam("name")String name,
 								 @QueryParam("type")String type,
@@ -127,11 +131,12 @@ public class DeviceWS {
 			typeA = "error";
 			message = e.getMessage();
 		}
-		return new Answer(typeA,message);
+		return new Response(typeA,message);
 	}
 	
 	/**
-	 * Servicio para buscar un dispositivo por medio del codigo, nombre y tipo 
+	 * Servicio para buscar un dispositivo por medio del codigo, nombre y tipo
+	 * @see RF10 
 	 * @param code
 	 * @param name
 	 * @param type
@@ -149,5 +154,40 @@ public class DeviceWS {
 		} catch (MyException e) {
 			throw new RemoteException("Problema consultando");
 		}
+	}
+	
+	/**
+	 * Actualiza los datos de un dispositivo
+	 * @see RF08
+	 * @param code
+	 * @param copy
+	 * @param name
+	 * @param type
+	 * @param status
+	 * @param details
+	 * @return Response - Confirmación de la actualización
+	 * @throws RemoteException
+	 */
+	@PUT
+	@Path("update")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateDevice(
+			@QueryParam("code")String code,
+			@QueryParam("copy")String copy,
+			@QueryParam("name")String name,
+			@QueryParam("type")String type,
+			@QueryParam("status")String status,
+			@QueryParam("details")String details) throws RemoteException{
+		String message = null;
+		String typeA = null;
+		try {
+			deviceBL.updateDevice(code, copy, name, type, status, details);
+			typeA = "ok";
+			message = "Dispositivo actualizado";
+		} catch (MyException e) {
+			typeA = "error";
+			message = e.getMessage();
+		}
+		return new Response(typeA,message);
 	}
 }
