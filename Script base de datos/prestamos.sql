@@ -51,7 +51,7 @@ INSERT INTO `devices` (`code`, `copy`, `name`, `type`, `status`, `details`) VALU
 --
 
 CREATE TABLE `loans` (
-  `startDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `startDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `endDate` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `returnDate` timestamp NULL DEFAULT NULL,
   `status` varchar(15) NOT NULL,

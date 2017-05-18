@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -55,7 +56,7 @@ public class DeviceWS {
 	 * @return Answer - Confirmacion de la actualizacion
 	 * @throws RemoteException
 	 */
-	@POST//Metodo http con que responde este metodo
+	@PUT//Metodo http con que responde este metodo
 	@Path("status")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
 	public Answer updateStatus(@QueryParam("code")String code,

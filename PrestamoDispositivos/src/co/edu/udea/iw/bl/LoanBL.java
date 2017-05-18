@@ -80,7 +80,6 @@ public interface LoanBL {
 	 */
 	public void updateLoan(String username,
 						   Date startDate,
-						   Date endDate,
 						   Date returnDate,
 						   String status,
 						   String code,

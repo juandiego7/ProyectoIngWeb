@@ -157,7 +157,6 @@ public class LoanBLImpl implements LoanBL {
 	 * Actualiza la información del préstamo que corresponde a los datos ingresados como parámetro
 	 * @param username
 	 * @param startDate
-	 * @param endDate
 	 * @param returnDate
 	 * @param status
 	 * @param code
@@ -167,45 +166,49 @@ public class LoanBLImpl implements LoanBL {
 	 * Lanzamos nuestra propia exception para manejarla en una capa superior
 	 */
 	@Override
-	public void updateLoan(String username, Date startDate, Date endDate, Date returnDate, String status, String code,
+	public void updateLoan(String username, Date startDate, Date returnDate, String status, String code,
 			String copy) throws MyException {
-		if (username==null || "".equals(username)) {
+		/*if (username==null || "".equals(username)) {
 			throw new MyException("El usuario no puede estar vacio");
 		}
 		if (startDate==null || "".equals(startDate)) {
 			throw new MyException("La fecha de inicio no puede estar vacia");
 		}
-		if (endDate==null || "".equals(endDate)) {
+		/*if (endDate==null || "".equals(endDate)) {
 			throw new MyException("La fecha de entrega no puede estar vacia");
-		}
+		}//
 		if (code == null || "".equals(code)) {
 			throw new MyException("El codigo no puede estar vacio");
 		}
 		if (copy == null || "".equals(copy)) {
 			throw new MyException("La copia no puede ser vacio");
-		}
+		}*/
+		
 		if (status == null || "".equals(status)) {
 			throw new MyException("El estado no puede ser vacio");
-		}
-		if (getLoan(username, code, copy, startDate) == null) {
-			throw new MyException("El prestamo no se encuentra registrado");
 		}
 		User user = userDAO.getUser(username);
 		if (user == null) {
 			throw new MyException("El usuario no esta registrado");
 		}
+		
 		DeviceId deviceId = new DeviceId(code, copy); 
 		Device device = deviceDAO.getDevice(deviceId);
 		if (device == null) {
 			throw new MyException("El dispositivo no esta registrado");
 		}
+		
 		LoanId loanId = new LoanId(user, device, startDate);
 		Loan loan = loanDAO.getLoan(loanId); 
 		if (loan == null) {
-			throw new MyException("El préstamo no esta registrado");
+			throw new MyException("El pr�stamo no esta registrado");
 		}
-		loan.setReturnDate(returnDate);
-		loan.setStatus(status); //Duda
+		//System.out.println("Date BL " + loan.getLoanId().getStartDate());
+		
+		if(status != null && !"".equals(status)){
+			loan.setReturnDate(returnDate);
+			loan.setStatus(status); //Duda
+		}
 		loanDAO.updateLoan(loan);
 	}
 

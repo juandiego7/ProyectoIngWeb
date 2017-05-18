@@ -3,24 +3,22 @@ package co.edu.udea.prestamos.ws;
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.hibernate.annotations.Proxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.edu.udea.iw.bl.LoanBL;
 import co.edu.udea.iw.dto.Loan;
-import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 import co.edu.udea.prestamos.dto.Answer;
 
@@ -121,6 +119,65 @@ public class LoanWS {
 			return null;
 		}
 	} 
+	
+	@PUT
+	@Path("lend")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Answer updateStatusLoan(
+			@QueryParam("username")String username, 
+			@QueryParam("startDate")String startDate,  
+			@QueryParam("code")String code, 
+			@QueryParam("copy")String copy){
+		Date date = null;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH");
+		String message = null;
+		String type = null;
+		try {
+			if (startDate != null && !"".equals(startDate)){
+				date = simpleDateFormat.parse(startDate);
+			}
+			loanBL.updateLoan(username, date, null, "PRESTADO", code, copy);
+			type = "ok";
+			message = "Prestamo actualizado";
+		} catch (MyException e) {
+			type = "error";
+			message = e.getMessage();
+		} catch (ParseException e) {
+			type = "error";
+			message = "Error, verifique el formato de la fecha ingresada";
+		}
+		return new Answer(type, message);
+	}
+	
+	@PUT
+	@Path("return")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Answer updateReturnLoan(
+			@QueryParam("username")String username, 
+			@QueryParam("startDate")String startDate,  
+			@QueryParam("code")String code, 
+			@QueryParam("copy")String copy){
+		String message = null;
+		String type = null;
+		Date date = null;
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH");
+		try {
+			if (startDate != null && !"".equals(startDate)){
+				date = simpleDateFormat.parse(startDate);
+			}
+			//System.out.println("Date WS"+ date);
+			loanBL.updateLoan(username, date, new Date(), "DEVUELTO", code, copy);
+			type = "ok";
+			message = "Prestamo actualizado ";
+		} catch (MyException e) {
+			type = "error";
+			message = e.getMessage();
+		} catch (ParseException e) {
+			type = "error";
+			message = "Error, verifique el formato de la fecha ingresada";
+		}
+		return new Answer(type, message);
+	}
 	
 
 }
