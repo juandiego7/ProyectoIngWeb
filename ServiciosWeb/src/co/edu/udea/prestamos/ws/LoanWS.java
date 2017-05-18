@@ -179,6 +179,7 @@ public class LoanWS {
 	 * Actualiza el estado(status) a DEVUELTO y fecha de devolución (returnDate) 
 	 * de un préstamo a la fecha actual, lo que significa que significa que el dispositvo
 	 * fue entregado en el Laboratorio 
+	 * @see RF16
 	 * @param username
 	 * @param startDate
 	 * @param code
