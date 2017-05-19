@@ -43,7 +43,7 @@ public class DeviceWS {
 	@GET//Metodo http con que responde este metodo
 	@Path("all")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-	public List<Device> getAll() throws RemoteException{
+	public List<Device> getAllDevice() throws RemoteException{
 
 		try {
 			return deviceBL.getDevices();
@@ -71,8 +71,8 @@ public class DeviceWS {
 			message = "Dispositivo actualizado";
 			type="ok";
 		} catch (MyException e) {
-			message = "Dispositivo actualizado";
-			type="ok";
+			message = "Error actualizando dispositivo";
+			type="error";
 			throw new RemoteException("Problema consultando");
 		}
 		return new Response(type,message); 
@@ -99,7 +99,7 @@ public class DeviceWS {
 	}
 	
 	/**
-	 * Servicio para registrar un dispositivos
+	 * Servicio para registrar un dispositivo
 	 * @see RF07
 	 * @param code
 	 * @param copy

@@ -18,7 +18,6 @@ public class User {
 	private String lastName;
 	private String email;
 	private String role;
-	private User manager;
 	
 	public User() {
 		
@@ -30,12 +29,10 @@ public class User {
 	 * @param name
 	 * @param lastName
 	 * @param email
-	 * @param password
 	 * @param role
-	 * @param manager
 	 */
 	public User(String username, String typeId, String numberId, String name, String lastName, String email,
-			String password, String role, User manager) {
+			 String role) {
 		this.username = username;
 		this.typeId = typeId;
 		this.numberId = numberId;
@@ -43,7 +40,14 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.role = role;
-		this.manager = manager;
+	}
+	
+	
+	/**
+	 * @param username
+	 */
+	public User(String username) {
+		this.username = username;
 	}
 	public String getUsername() {
 		return username;
@@ -87,10 +91,4 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public User getManager() {
-		return manager;
-	}
-	public void setManager(User manager) {
-		this.manager = manager;
-	}	
 }

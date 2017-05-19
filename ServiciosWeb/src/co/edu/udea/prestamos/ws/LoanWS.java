@@ -20,10 +20,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import co.edu.udea.iw.bl.LoanBL;
-import co.edu.udea.iw.dto.Device;
 import co.edu.udea.iw.dto.Loan;
 import co.edu.udea.iw.exception.MyException;
+import co.edu.udea.prestamos.dto.LoanId;
+import co.edu.udea.prestamos.dto.LoanW;
 import co.edu.udea.prestamos.dto.Response;
+import co.edu.udea.prestamos.dto.User;
 
 /**
  * Implementacion de los servicios web de la logica de negocio para los dispositivos
@@ -49,12 +51,34 @@ public class LoanWS {
 	@GET//Metodo http con que responde este metodo
 	@Path("all")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
-	public List<Loan> getAll(
+	public List<LoanW> getAllLoan(
 			@QueryParam("username")String username,
 			@QueryParam("status")String status
 			) throws RemoteException{
+		List<LoanW> loanWs = new ArrayList<LoanW>();
 		try {
-			return loanBL.getLoansUser(username, status);
+			for(Loan loan: loanBL.getLoansUser(username, status)){
+				LoanW loanW = new LoanW(
+								new LoanId(
+										new User(
+											loan.getLoanId().getUsername().getUsername(),
+											loan.getLoanId().getUsername().getTypeId(),
+											loan.getLoanId().getUsername().getNumberId(),
+											loan.getLoanId().getUsername().getName(),
+											loan.getLoanId().getUsername().getLastName(),
+											loan.getLoanId().getUsername().getEmail(),
+											loan.getLoanId().getUsername().getRole()
+										),
+									loan.getLoanId().getDevice(),
+									loan.getLoanId().getStartDate()
+								 ),
+								loan.getEndDate(),
+								loan.getReturnDate(),
+								loan.getStatus()
+							  );
+				loanWs.add(loanW);
+			}
+			return loanWs;
 		} catch (MyException e) {
 			throw new RemoteException("Problema consultando");
 		}
@@ -120,15 +144,35 @@ public class LoanWS {
 	@GET
 	@Path("get")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Loan> getLoans(
+	public List<LoanW> getLoans(
 			@QueryParam("code")String code, 
 			@QueryParam("copy")String copy, 
 			@QueryParam("date")String date) throws RemoteException{
 		Date d = null;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		List<LoanW> loanWs = new ArrayList<LoanW>();
 		try {
 			d = simpleDateFormat.parse(date);
-			return loanBL.getLoans(code, copy, d);
+			for(Loan loan: loanBL.getLoans(code, copy, d)){
+				LoanW loanW = new LoanW(
+						new LoanId(new User(
+								loan.getLoanId().getUsername().getUsername(),
+								loan.getLoanId().getUsername().getTypeId(),
+								loan.getLoanId().getUsername().getNumberId(),
+								loan.getLoanId().getUsername().getName(),
+								loan.getLoanId().getUsername().getLastName(),
+								loan.getLoanId().getUsername().getEmail(),
+								loan.getLoanId().getUsername().getRole()
+							),
+						loan.getLoanId().getDevice(),
+						loan.getLoanId().getStartDate()
+								),
+					loan.getEndDate(),
+					loan.getReturnDate(),
+					loan.getStatus());
+				loanWs.add(loanW);
+			}
+			return loanWs;
 		} catch (MyException e) {
 			throw new RemoteException("Problema consultando");
 		} catch (ParseException e) {
@@ -177,7 +221,7 @@ public class LoanWS {
 	
 	/**
 	 * Actualiza el estado(status) a DEVUELTO y fecha de devolución (returnDate) 
-	 * de un préstamo a la fecha actual, lo que significa que significa que el dispositvo
+	 * de un préstamo a la fecha actual, lo que significa que el dispositvo
 	 * fue entregado en el Laboratorio 
 	 * @see RF16
 	 * @param username
@@ -228,18 +272,39 @@ public class LoanWS {
 	@GET
 	@Path("search")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Loan> searchLoan(
+	public List<LoanW> searchLoan(
 			@QueryParam("typeId")String typeId, 
 			@QueryParam("numberId")String numberId) throws RemoteException{
+		List<LoanW> loanWs = new ArrayList<LoanW>();
 		try {
-			return loanBL.getLoansDevice(typeId, numberId);
+			
+			for(Loan loan: loanBL.getLoansDevice(typeId, numberId)){
+				LoanW loanW = new LoanW(
+						new LoanId(new User(
+								loan.getLoanId().getUsername().getUsername(),
+								loan.getLoanId().getUsername().getTypeId(),
+								loan.getLoanId().getUsername().getNumberId(),
+								loan.getLoanId().getUsername().getName(),
+								loan.getLoanId().getUsername().getLastName(),
+								loan.getLoanId().getUsername().getEmail(),
+								loan.getLoanId().getUsername().getRole()
+							),
+						loan.getLoanId().getDevice(),
+						loan.getLoanId().getStartDate()
+								),
+					loan.getEndDate(),
+					loan.getReturnDate(),
+					loan.getStatus());
+				loanWs.add(loanW);
+			}
+			return loanWs;
 		} catch (MyException e) {
 			throw new RemoteException("Error consultando los prestamos por tipo y numero de Id");
 		}
 	}
 	
 	/**
-	 * Deshace(elimina) elimina una solicitud de prestamo
+	 * Deshace(elimina) una solicitud de prestamo
 	 * @see RF15 
 	 * @param username
 	 * @param startDate

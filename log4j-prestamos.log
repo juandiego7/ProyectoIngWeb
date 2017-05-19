@@ -317,3 +317,44 @@ Caused by: java.sql.SQLException: Value '0000-00-00 00:00:00' can not be represe
 	at org.hibernate.loader.Loader.loadEntity(Loader.java:2037)
 	... 66 more
 2017-05-17 19:17:04 ERROR MyException - El préstamo no esta registrado
+2017-05-18 22:44:37 ERROR MyException - El usuario no puede estar vacio
+2017-05-18 22:45:33 ERROR MyException - El usuario no puede estar vacio
+2017-05-18 22:48:58 ERROR MyException - El usuario no puede estar vacio
+2017-05-18 23:48:34 ERROR MyException - El tipo no puede ser vacio
+2017-05-18 23:49:11 ERROR MyException - El estado no puede ser vacio
+2017-05-19 00:08:50 ERROR MyException - El usuario no puede estar vacio
+2017-05-19 00:10:38 ERROR MyException - El usuario no esta registrado
+2017-05-19 00:26:47 ERROR ContextLoader - Context initialization failed
+org.springframework.beans.factory.BeanDefinitionStoreException: IOException parsing XML document from class path resource [config.xml]; nested exception is java.io.FileNotFoundException: class path resource [config.xml] cannot be opened because it does not exist
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:344)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:304)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:181)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:217)
+	at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:188)
+	at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:125)
+	at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:94)
+	at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:537)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:452)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:403)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:306)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:106)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:5118)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5634)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:145)
+	at org.apache.catalina.core.StandardContext.reload(StandardContext.java:4138)
+	at org.apache.catalina.loader.WebappLoader.backgroundProcess(WebappLoader.java:425)
+	at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1341)
+	at org.apache.catalina.core.StandardContext.backgroundProcess(StandardContext.java:5958)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1542)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1552)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1552)
+	at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1520)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.io.FileNotFoundException: class path resource [config.xml] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:172)
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:330)
+	... 24 more
+2017-05-19 00:47:41 ERROR MyException - El préstamo no esta registrado
+2017-05-19 01:02:28 ERROR MyException - El prestamo no se encuentra registrado
+2017-05-19 01:03:20 ERROR MyException - El prestamo no se encuentra registrado

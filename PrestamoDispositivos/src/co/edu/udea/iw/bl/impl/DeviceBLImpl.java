@@ -54,18 +54,19 @@ public class DeviceBLImpl implements DeviceBL {
 		if (copy == null || "".equals(copy)) {
 			throw new MyException("La copia no puede ser vacio");
 		}
-		if (name == null || "".equals(name)) {
-			throw new MyException("El nombre no puede estar vacio");
-		}
-		if (type == null || "".equals(type)) {
-			throw new MyException("El tipo no puede ser vacio");
-		}
-		if (status == null || "".equals(status)) {
-			throw new MyException("El estado no puede ser vacio");
-		}		
+					
 		Device device = getDevice(code, copy);
 		if (device == null) {
 			throw new MyException("El dispositivo no se encuentra registrado");
+		}
+		if (name != null) {
+			device.setName(name);
+		}
+		if (type != null) {
+			device.setType(type);
+		}
+		if (status != null && !"".equals(status)) {
+			throw new MyException("El estado no puede ser vacio");
 		}
 		deviceDAO.updateDevice(device);
 	}
