@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import co.edu.udea.iw.bl.DeviceBL;
 import co.edu.udea.iw.dto.Device;
-import co.edu.udea.iw.dto.User;
 import co.edu.udea.iw.exception.MyException;
 import co.edu.udea.prestamos.dto.Response;
 

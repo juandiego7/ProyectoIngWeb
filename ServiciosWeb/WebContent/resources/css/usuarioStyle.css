@@ -1,0 +1,49 @@
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+.nav-link, .navbar-brand{
+    font-size: large;
+}
+
+.h2, .h3, .h4{
+    padding-top: 3vh;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.intro-divider {
+    width: 50%;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+#avatar{
+    border-radius: 50%;
+}
+
+#buscar1:hover{
+    cursor: pointer;
+}
+
+#body{
+    margin-top: 13vh; 
+    height: 80vh;
+    overflow: auto;
+}
+
+#footer{
+    padding: 3%;
+    background: rgba(0,0,0,0.06);
+}

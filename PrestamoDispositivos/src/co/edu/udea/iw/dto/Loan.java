@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.annotations.Proxy;
-
 /**
  * Modelo relacional (pojo) de los préstamos
  * @author Raul Antonio Martinez Silgado - rantonio.martinez@udea.edu.co

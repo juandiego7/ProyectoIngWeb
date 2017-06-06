@@ -1,0 +1,104 @@
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+}
+
+.nav-link, .navbar-brand{
+    font-size: large;
+}
+
+.intro-header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    color: #000000;
+    background: url(../img/portada1.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.intro-message > h1 {
+    padding-top: 10vh;
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.h2, .h3, .h4{
+    padding-top: 3vh;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.intro-divider {
+    width: 50%;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+    float: left;
+    width: 200px;
+    border-top: 3px solid #e7e7e7;
+}
+
+.navbar-brand:hover{
+    font-size: 2em;
+}
+
+.ima2{
+    width: 100%;
+    height: 50%;
+}
+
+#ima1{
+    width: 100%;
+    height: 60vh;
+}
+
+#acerca{
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+    background: rgba(0,0,0,0.06);
+}
+
+#dispositivos{
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+}
+
+#contacto{
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+}
+
+#submit{
+    width: 30%;
+    margin-left: 35%;
+}
+
+#submit:hover{
+    width: 40%;
+    margin-left: 30%;
+    cursor: pointer;
+}
+
+#buscar:hover{
+    cursor: pointer;
+}
+
+#footer{
+    padding: 3%;
+    background: rgba(0,0,0,0.06);
+}

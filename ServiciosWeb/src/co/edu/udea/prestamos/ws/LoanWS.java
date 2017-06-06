@@ -113,7 +113,6 @@ public class LoanWS {
 		String type = null;
 		Date startD = null;
 		Date endD = null;
-		Date returnD = null; 
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH");
 		try {
 			startD = simpleDateFormat.parse(startDate);
