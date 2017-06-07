@@ -1,8 +1,39 @@
-<div>
+<nav class="navbar fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">
+                <span><img src="resources/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    Inicio
+                </span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#acerca">Acerca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dispositivos">Dispositivos</a>
+                    </li>
+                </ul>     
+                <form class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!login">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#!register">Registrarse</a>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+</nav>
+<section id="login">
+<div class="container text-center">
     <table border="0" cellpadding="4" cellspacing="1">
         <tbody>
             <tr valign="middle" align="center">
-                <td colspan="2" valign="middle" align="center">Iniciar sesi�n</td>
+                <td colspan="2" valign="middle" align="center">Iniciar sesión</td>
             </tr>              
             <tr valign="top">
                 <td valign="middle" align="left"><b>Usuario:</b></td>
@@ -11,7 +42,7 @@
                 </td>
             </tr>
             <tr valign="top">
-                <td valign="middle" align="left"><b>Contrase�a:</b></td>
+                <td valign="middle" align="left"><b>Contraseña:</b></td>
                 <td valign="middle" align="left">
                     <input ng-model="password" maxlength="30" oncopy="return false" oncut="return false" onpaste="return false" type="password"/>&nbsp;
                 </td>
@@ -24,3 +55,4 @@
         </tbody>
     </table>
 </div>
+</section>
