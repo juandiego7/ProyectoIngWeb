@@ -18,8 +18,12 @@ body,h1,h2,h3,h4,h5,h6 {
     padding-bottom: 50px;
     text-align: center;
     color: #000000;
-    background: url(../img/portada1.jpg) no-repeat center center;
-    background-size: cover;
+    background: url(../img/banner.png) no-repeat center center;
+    background-size: contain;
+}
+
+.intro-header:hover{
+    color:blue;
 }
 
 .intro-message > h1 {
