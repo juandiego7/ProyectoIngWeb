@@ -1,0 +1,22 @@
+<div>
+	<table border="1" width="100%">
+		<tr>
+			<th>Código</th>
+			<th>Copia</th>
+			<th>Nombre</th>
+			<th>Estado</th>
+			<th>Tipo</th>
+		</tr>
+		<tr ng-repeat="device in listaDevices">
+			<td>{{device.deviceId.code}}</td>
+			<td>{{device.deviceId.copy}}</td>
+			<td>{{device.name}}</td>
+			<td>{{device.status}}</td>
+			<td>{{device.type}}</td>
+			
+		</tr>
+	</table>
+	<div>
+		<button ng-click="getDispositivos()">Agregar</button>
+	</div>
+</div>
