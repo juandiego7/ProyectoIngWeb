@@ -30,6 +30,22 @@ appCliente.service('users', function ($http, $cookies, $location) {
             }
         });
     };
+    
+    this.validarEstado = function(){
+    	if($location.url() == '/registerUser'){
+			$location.url('/registerUser');
+			return true;
+		}
+    	if(typeof($cookies.username) == 'undefined' || $cookies.username == ''){
+			$location.url('/login');
+			return false;
+		}else
+			
+		if($location.url() == '/login'){
+			$location.url('/');
+			return true;
+		}
+	}
 });
 
 appCliente.service('devices', function ($http, $cookies, $location) {
@@ -124,7 +140,7 @@ appCliente.controller('usuarioController', function ($scope, $cookies, $location
     $scope.copy = '';
 
     $scope.login = function () {
-        usuarios.autenticar($scope.username, $scope.password).then(
+        users.autenticar($scope.username, $scope.password).then(
                 function success(data) {
                     if (data.data != '') {
                         $scope.password = '';
@@ -137,8 +153,7 @@ appCliente.controller('usuarioController', function ($scope, $cookies, $location
                             $location.url("/")
                             //$window.location.href = "http://localhost:8080/PrestamosDispositivos/usuario.html";
                         } else {
-                            alert(data.data.message);
-                            $location.url("/")
+                            alert(data.data.message);                            
                         }
                     }
 
@@ -150,7 +165,7 @@ appCliente.controller('usuarioController', function ($scope, $cookies, $location
     };
 
     $scope.registrar = function () {
-        usuarios.registrar(
+        users.registrar(
                 $scope.username, $scope.typeId, $scope.numberId,
                 $scope.name, $scope.lastName, $scope.email,
                 $scope.password, $scope.role, $scope.manager).then(
@@ -192,11 +207,21 @@ appCliente.config(['$routeProvider',function($routeProvider){
 		controller:'dispositivoController'
 	});
 	
+	$routeProvider.when('/registerUser',{
+		templateUrl: 'regUsuario.html',
+		controller:'usuarioController'
+	});
+	
+	$routeProvider.when('/registerDevice',{
+		templateUrl: 'regDispositivo.html',
+		controller:'usuarioController'
+	});
+	
 }]);
 
-/*appCliente.run(function($rootScope, users){
+appCliente.run(function($rootScope, users){
 	$rootScope.$on('$routeChangeStart', function(){
 		users.validarEstado();
 	})
-});*/
+});
 
