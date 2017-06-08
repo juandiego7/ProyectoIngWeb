@@ -343,7 +343,11 @@ appCliente.controller('prestamoController', function ($scope,$location,$cookies,
                      if (data.data != null) {
                     	 alert(data.data.message);
                      	if(data.data.type == "ok"){
-                     		$location.url("/loans");
+                     		var index = $scope.listaLoans.indexOf(loan);
+                     		$scope.listaLoans.splice(index, 1);
+                     		
+                     		$location.url("/loans"); //redirección a principal
+                     		
                      	}
                      	                             
                       }
