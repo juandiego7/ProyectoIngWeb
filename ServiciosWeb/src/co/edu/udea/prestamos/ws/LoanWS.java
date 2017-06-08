@@ -49,6 +49,47 @@ public class LoanWS {
 	 * @throws RemoteException
 	 */
 	@GET//Metodo http con que responde este metodo
+	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
+	public List<LoanW> getAllLoan() throws RemoteException{
+		List<LoanW> loanWs = new ArrayList<LoanW>();
+		try {
+			for(Loan loan: loanBL.getLoans()){
+				LoanW loanW = new LoanW(
+								new LoanId(
+										new User(
+											loan.getLoanId().getUsername().getUsername(),
+											loan.getLoanId().getUsername().getTypeId(),
+											loan.getLoanId().getUsername().getNumberId(),
+											loan.getLoanId().getUsername().getName(),
+											loan.getLoanId().getUsername().getLastName(),
+											loan.getLoanId().getUsername().getEmail(),
+											loan.getLoanId().getUsername().getRole()
+										),
+									loan.getLoanId().getDevice(),
+									loan.getLoanId().getStartDate()
+								 ),
+								loan.getEndDate(),
+								loan.getReturnDate(),
+								loan.getStatus()
+							  );
+				loanWs.add(loanW);
+			}
+			return loanWs;
+		} catch (MyException e) {
+			throw new RemoteException("Problema consultando");
+		}
+	}
+	
+	
+	
+	/**
+	 * Servicio para retornar todos los prestamos o solicitudes de prestamos
+	 * @see RF11 with status=RESERVADO
+	 * @see RF12 with status=PRESTADO
+	 * @return Lista de Préstamos
+	 * @throws RemoteException
+	 */
+	@GET//Metodo http con que responde este metodo
 	@Path("all")//Definicion de la ruta para invocar este metodo
 	@Produces(MediaType.APPLICATION_JSON)//Formato de respuesta
 	public List<LoanW> getAllLoan(
@@ -151,6 +192,7 @@ public class LoanWS {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		List<LoanW> loanWs = new ArrayList<LoanW>();
 		try {
+			System.out.println("Fecha: "+ date);
 			d = simpleDateFormat.parse(date);
 			for(Loan loan: loanBL.getLoans(code, copy, d)){
 				LoanW loanW = new LoanW(

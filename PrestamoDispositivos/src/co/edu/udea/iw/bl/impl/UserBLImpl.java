@@ -76,11 +76,14 @@ public class UserBLImpl implements UserBL {
 			throw new MyException("El role no puede estar vacio");
 		}
 		if(manager != null){
+			System.out.println("Mn: "+ manager.getUsername() + " Nm: "+manager.getName());
 			if (userDAO.getUser(manager.getUsername())==null){
+				System.out.println("Man: 2: "+manager.getUsername());
 				throw new MyException("El manager no existe");
 			}
 		}
 		User user = new User(username, typeId, numberId, name, lastName, email, password, role, manager);
+		//System.out.println("Man Fin:" + user.getManager().getUsername());
 		userDAO.registerUser(user);
 	}
 

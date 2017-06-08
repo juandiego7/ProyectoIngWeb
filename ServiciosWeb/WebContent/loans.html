@@ -1,0 +1,28 @@
+<meta charset="ISO-8859-1">
+<div ng-controller="usuarioController">
+	<div ng-include="getNav()"></div>
+</div>
+<div ng-include="'header.html'"></div>
+<div>
+	<table border="1" width="100%">
+		<tr>
+			<th>Código</th>
+			<th>Copia</th>
+			<th>Nombre</th>
+			<th>Estado</th>
+			<th>Fecha</th>
+			<th>Cancelar</th>
+		</tr>
+		<tr ng-repeat="loan in listaLoans">
+			<td>{{loan.loanId.device.deviceId.code}}</td>
+			<td>{{loan.loanId.device.deviceId.copy}}</td>
+			<td>{{loan.loanId.device.name}}</td>
+			<td>{{loan.status}}</td>
+			<td>{{loan.startDate}}{{loan.endDate}}</td>
+			<td><button ng-click="borrar(loan)">Cancelar</button></td>
+		</tr>
+	</table>
+	<div>
+		
+	</div>
+</div>

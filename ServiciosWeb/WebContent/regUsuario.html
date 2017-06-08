@@ -1,0 +1,73 @@
+<meta charset="ISO-8859-1">
+<div ng-controller="usuarioController">
+	<div ng-include="getNav()"></div>
+</div>
+<div ng-include="'header.html'"></div>
+<div class="container text-center">
+    <form>
+        <table border="0" cellpadding="4" cellspacing="1">
+            <tbody>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Usuario*:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="20" ng-model="username" required placeholder="Ingrese su usuario" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Tipo de Identificación*:</b></td>
+                    <td valign="middle" align="left">
+                        <select ng-model="typeId" required>
+                            <option value="CC" >Cédula de Ciudadanía</option>
+                            <option value="TI">Tarjeta de Identidad</option>
+                            <option value="CE">Cédula de Extranjería</option>
+                        </select>&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Número de Identificación*:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="number" maxlength="12" ng-model="numberId" required placeholder="Ńúmero de Identificación" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Nombres*:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="50" ng-model="name" required placeholder="Ingrese sus nombres" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Apellidos:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="50" ng-model="lastName" placeholder="Ingrese sus apellidos" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Correo electrónico:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="email" maxlength="50" ng-model="email" placeholder="Ingrese su correo"/>&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Contraseña*:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="password" maxlength="30" ng-model="password" placeholder="Contraseña" oncopy="return false" oncut="return false" onpaste="return false"/>&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Repita contraseña*:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="password" maxlength="30" ng-model="rPassword" placeholder="Repita contraseña" oncopy="return false" oncut="return false" onpaste="return false"/>&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="center">
+                        <button type="reset">Limpiar</button>&nbsp;
+                    </td>
+                    <td valign="middle" align="center">
+                        <button ng-click="registrar()">Registrar</button>&nbsp;
+                    </td>
+                </tr>                                  
+            </tbody>
+        </table>
+    </form>
+</div>

@@ -63,10 +63,12 @@ public class UserWS {
 		String message = null;
 		String type = null;
 		User managerU = null;
+		System.out.println("Rol: " + role + " Man: "+ manager);
 		try {
-			if (manager != null) {
-				managerU = new User();
-				managerU.setUsername(username);	
+			if (manager != null && manager != "") {
+				managerU = userBL.getUser(manager);
+				//managerU.setUsername(manager);
+				System.out.println("Man: "+ managerU.getUsername());
 			}
 			userBL.registerUser(username, typeId, numberId, name, lastName, email, password, role, managerU);
 			type = "ok";
@@ -89,17 +91,26 @@ public class UserWS {
 	@GET//metodo al que responde
 	@Path("login")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response login(@QueryParam("username")String username,
+	public co.edu.udea.prestamos.dto.User login(@QueryParam("username")String username,
 							 @QueryParam("password")String password){
 		String message = null;
 		String type = null;
+		co.edu.udea.prestamos.dto.User u = new co.edu.udea.prestamos.dto.User();
+		User user = null;
 		try {
 			message =  userBL.login(username, password);
 			type = "ok";
+			user = userBL.getUser(username);
+			u.setEmail(user.getEmail());
+			u.setName(user.getName());
+			u.setUsername(user.getUsername());
+			u.setRole(user.getRole());
+			u.setTypeId(user.getTypeId());
+			u.setNumberId(user.getNumberId());
 		} catch (MyException e) {
 			message = e.getMessage();
 			type = "error";	
 		}
-		return new Response(type,message);
+		return u;
 	}
 }

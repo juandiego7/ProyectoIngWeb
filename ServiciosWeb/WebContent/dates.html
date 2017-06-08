@@ -1,0 +1,21 @@
+<meta charset="ISO-8859-1">
+<!-- <div ng-controller="usuarioController">
+	<div ng-include="getNav()"></div>
+</div> -->
+<div ng-include="'header.html'"></div>
+<div>
+	<label><strong>Codigo:</strong> {{device.code}} <strong>copia:</strong> {{device.copy}} <strong>nombre:</strong> {{device.name}}</label>
+	<table border="1" width="100%">
+		<tr>
+			<th>Rango de horas</th>
+			<th></th>
+		</tr>
+		<tr ng-repeat="r in rangos">
+			<td>{{r.inicio}}-{{r.fin}}</td>
+			<td><button ng-click="reservar(device,r)">Reservar</button></td>
+		</tr>
+	</table>
+	<div>
+		
+	</div>
+</div>

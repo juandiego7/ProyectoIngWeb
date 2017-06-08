@@ -1,0 +1,60 @@
+<meta charset="ISO-8859-1">
+<div ng-controller="usuarioController">
+	<div ng-include="getNav()"></div>
+</div>
+<div ng-include="'header.html'"></div>
+<div>
+    <form>
+        <table border="0" cellpadding="4" cellspacing="1">
+            <tbody>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Código:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="15" required placeholder="Código" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Número de copia:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="5" required placeholder="Número de copia" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Nombre:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="50" required placeholder="Ingrese su nombre" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Tipo:</b></td>
+                    <td valign="middle" align="left">
+                        <input type="text" maxlength="15" required placeholder="Ingrese tipo" />&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Estado:</b></td>
+                    <td valign="middle" align="left">
+                        <select>
+                            <option value="DISPONIBLE" selected>Disponible</option>
+                            <option value="INHABILITADO">Inhabilitado</option>
+                        </select>&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="left"><b>Detalles:</b></td>
+                    <td valign="middle" align="left">
+                        <textarea rows="5" cols="50" maxlength="250" placeholder="Ingrese detalles del dispositivo"></textarea>&nbsp;
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td valign="middle" align="center">
+                        <button type="reset">Limpiar</button>&nbsp;
+                    </td>
+                    <td valign="middle" align="left">
+                        <button>Registrar</button>&nbsp;
+                    </td>
+                </tr>                                  
+            </tbody>
+        </table>
+    </form>
+</div>

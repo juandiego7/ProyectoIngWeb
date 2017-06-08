@@ -1,7 +1,12 @@
+<meta charset="ISO-8859-1">
+<div ng-controller="usuarioController">
+	<div ng-include="getNav()"></div>
+</div>
+<div ng-include="'header.html'"></div>
 <div>
 	<table border="1" width="100%">
 		<tr>
-			<th>CÃ³digo</th>
+			<th>Código</th>
 			<th>Copia</th>
 			<th>Nombre</th>
 			<th>Estado</th>
@@ -13,10 +18,10 @@
 			<td>{{device.name}}</td>
 			<td>{{device.status}}</td>
 			<td>{{device.type}}</td>
-			
+			<td><button ng-click="getPrestamos(device)">Disponibilidad</button></td>
 		</tr>
 	</table>
 	<div>
-		<button ng-click="getDispositivos()">Agregar</button>
+		
 	</div>
 </div>
